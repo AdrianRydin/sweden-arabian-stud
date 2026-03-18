@@ -5,8 +5,11 @@ async function getHorses() {
   const res = await fetch("http://localhost:3000/api/horses", {
     cache: "no-store",
   });
+  if (!res.ok) {
+    throw new Error(`Failed to fetch horses: ${res.status} ${res.statusText}`);
+  }
 
-  return res.json();
+  return await res.json();
 }
 
 export default async function HorsesPage() {

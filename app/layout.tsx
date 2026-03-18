@@ -4,7 +4,7 @@ import "./globals.css";
 import Header from "./components/Header";
 
 const raleway = Raleway({
-  variable: "--font-geist-sans",
+  variable: "--font-raleway",
   subsets: ["latin"],
 });
 

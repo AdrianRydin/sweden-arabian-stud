@@ -4,7 +4,6 @@ import { usePathname } from "next/navigation";
 import { FacebookIcon, InstagramIcon, Menu, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import "../globals.css";
 
 const navLinks = [
   { to: "/", label: "Home" },
@@ -68,10 +67,22 @@ function Header() {
 
         <div className="flex items-center gap-2.5">
           <div className="hidden-mobile flex gap-2">
-            <a href="#" className="social-icon-desktop">
+            <a
+              href="https://www.facebook.com/kathleenohlsson"
+              className="social-icon-desktop"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Visit our Facebook page"
+            >
               <FacebookIcon size={18} />
             </a>
-            <a href="#" className="social-icon-desktop">
+            <a
+              href="https://www.instagram.com/kathleenohlsson/"
+              className="social-icon-desktop"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Visit our Instagram page"
+            >
               <InstagramIcon size={18} />
             </a>
           </div>
@@ -79,7 +90,7 @@ function Header() {
           {/* Hamburger button */}
           <button
             onClick={() => setMobileMenuOpen((v) => !v)}
-            className="show-mobile bg-transparent border-none text-[rgba(255,255,255.0.85)] cursor-pointer p-1.5 hidden items-center justify-center rounded"
+            className="show-mobile bg-transparent border-none text-[rgba(255,255,255,0.85)] cursor-pointer p-1.5 hidden items-center justify-center rounded"
             aria-label="Toggle Menu"
           >
             {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
@@ -91,9 +102,7 @@ function Header() {
         <div className="show-mobile-block mobile-menu-container">
           {navLinks.map((link) => {
             const isActive =
-              link.to === "/"
-                ? location.pathname === "/"
-                : location.pathname.startsWith(link.to);
+              link.to === "/" ? pathname === "/" : pathname.startsWith(link.to);
             return (
               <Link
                 key={link.to}
@@ -107,10 +116,22 @@ function Header() {
           })}
           {/* Social icons in mobile menu */}
           <div className="flex gap-3 px-8 pt-4 border-t border-[rgba(255,255,255,0.07)] mt-2">
-            <a href="#" className="mobile-social-link">
+            <a
+              href="https://www.facebook.com/kathleenohlsson"
+              className="mobile-social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Visit our Facebook page"
+            >
               <FacebookIcon size={13} /> Facebook
             </a>
-            <a href="#" className="mobile-social-link">
+            <a
+              href="https://www.instagram.com/kathleenohlsson/"
+              className="mobile-social-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Visit our Instagram page"
+            >
               <InstagramIcon size={13} /> Instagram
             </a>
           </div>

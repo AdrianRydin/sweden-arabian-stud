@@ -31,7 +31,7 @@ const HorseSchema = new mongoose.Schema(
       required: true,
     },
     pedigree: {
-      type: Object,
+      type: mongoose.Schema.Types.Mixed,
       required: false,
     },
     slug: {
