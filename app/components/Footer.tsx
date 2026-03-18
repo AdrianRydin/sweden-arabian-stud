@@ -1,7 +1,6 @@
 import { FacebookIcon, InstagramIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 
 const navLinks = [
   { to: "/", label: "Home" },
@@ -29,7 +28,7 @@ function Footer() {
               />
             </div>
             <div className="footer-contact-info">
-              <Link href={"tel:0762235910"}>T: +46 70 123 4567</Link>
+              <Link href={"tel:0762235910"}>T: +46 76 223 5910</Link>
               <div>
                 E:{" "}
                 <Link
@@ -62,6 +61,7 @@ function Footer() {
                 href="https://www.facebook.com/kathleenohlsson"
                 className="footer-social-link"
                 target="_blank"
+                rel="noopener referrer"
               >
                 <FacebookIcon size={13} /> Facebook
               </Link>
@@ -69,6 +69,7 @@ function Footer() {
                 href="https://www.instagram.com/kathleenohlsson/"
                 className="footer-social-link"
                 target="_blank"
+                rel="noopener referrer"
               >
                 <InstagramIcon size={13} /> Instagram
               </Link>
@@ -146,7 +147,6 @@ function Footer() {
           }
         }
       `}</style>
-      ;
     </footer>
   );
 }
