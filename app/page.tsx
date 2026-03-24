@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
-import paperFxImg from "figma:asset/bb6a0e80542f322f29ee4919a34ecae57c7d9c3f.png";
 import Link from "next/link";
 
 export default function Home() {
@@ -110,11 +109,11 @@ export default function Home() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2">
-        <div className="relative overflow-hidden min-h-80">
+        <div className="relative overflow-hidden min-h-80 group">
           <img
             src={"/swedenarabian1.jpeg"}
-            alt="Swweden Arabian Stud Image"
-            className="absolute inset-0 w-full h-full object-cover block transition-transform duration-500 hover:scale-105"
+            alt="Sweden Arabian Stud Image"
+            className="absolute inset-0 w-full h-full object-cover block transition-transform duration-500 group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-black/30 flex items-end feature-image-padding">
             <div>
@@ -125,11 +124,11 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="relative overflow-hidden min-h-80">
+        <div className="relative overflow-hidden min-h-80 group">
           <img
             src={"/swedenarabian1.jpeg"}
-            alt="Swweden Arabian Stud Image"
-            className="absolute inset-0 w-full h-full object-cover block transition-transform duration-500 hover:scale-105"
+            alt="Sweden Arabian Stud Image"
+            className="absolute inset-0 w-full h-full object-cover block transition-transform duration-500 group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-black/30 flex items-end feature-image-padding">
             <div>
