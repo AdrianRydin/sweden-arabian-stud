@@ -34,13 +34,13 @@ function StallionPage() {
         </div>
 
         <div className="horse-grid-3">
-          {stallions.map((stallions) => (
+          {stallions.map((stallion) => (
             <HorseCard
-              key={stallions.id}
-              image={stallions.image}
-              name={stallions.name}
-              parentage={`${stallions.sire} x ${stallions.dam}`}
-              detailLink={`/horse/${stallions.id}`}
+              key={stallion.id}
+              image={stallion.image}
+              name={stallion.name}
+              parentage={`${stallion.sire} x ${stallion.dam}`}
+              detailLink={`/horse/${stallion.id}`}
             />
           ))}
         </div>
