@@ -40,7 +40,7 @@ function StallionPage() {
               image={stallion.image}
               name={stallion.name}
               parentage={`${stallion.sire} x ${stallion.dam}`}
-              detailLink={`/horse/${stallion.id}`}
+              detailLink={`/stallions/${stallion.id}`}
             />
           ))}
         </div>

@@ -1,55 +1,9 @@
 import { PageHero } from "../components/PageHero";
 import { HorseCard } from "../components/HorseCard";
+import { saleHorses } from "../data/catalogData";
 
 const heroImage =
   "https://images.unsplash.com/photo-1656480652731-f689059a4582?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGVzdG51dCUyMEFyYWJpYW4lMjBob3JzZSUyMHNhbGV8ZW58MXx8fHwxNzcyODEwNTYwfDA&ixlib=rb-4.1.0&q=80&w=1080";
-
-const saleHorses = [
-  {
-    id: 1,
-    name: "Solveig SAS",
-    parentage: "Norrsken SAS × Freya Al Noor",
-    badge: "AVAILABLE",
-    price: "Price on application",
-    description:
-      "3-year-old grey filly. Exceptional mover with outstanding head.",
-    image:
-      "https://images.unsplash.com/photo-1617745021057-ca21f1be34a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxncmV5JTIwQXJhYmlhbiUyMG1hcmUlMjBwYXN0dXJlfGVufDF8fHx8MTc3MjgxMDU1NXww&ixlib=rb-4.1.0&q=80&w=400",
-  },
-  {
-    id: 2,
-    name: "Baldur SAS",
-    parentage: "Viking Star SAS × Linnea Arabica",
-    badge: "AVAILABLE",
-    price: "Price on application",
-    description:
-      "4-year-old bay colt. Stunning presence and natural show ability.",
-    image:
-      "https://images.unsplash.com/photo-1656480652731-f689059a4582?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGVzdG51dCUyMEFyYWJpYW4lMjBob3JzZSUyMHNhbGV8ZW58MXx8fHwxNzcyODEwNTYwfDA&ixlib=rb-4.1.0&q=80&w=400",
-  },
-  {
-    id: 3,
-    name: "Valkyrie SAS",
-    parentage: "Björn Al Saud × Aurora SAS",
-    badge: "AVAILABLE",
-    price: "Price on application",
-    description:
-      "5-year-old grey mare. Show trained, multiple champion titles.",
-    image:
-      "https://images.unsplash.com/photo-1758573951599-eb88f28f7297?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3aGl0ZSUyMEFyYWJpYW4lMjBob3JzZSUyMHNob3d8ZW58MXx8fHwxNzcyODEwNTUwfDA&ixlib=rb-4.1.0&q=80&w=400",
-  },
-  {
-    id: 4,
-    name: "Rune SAS",
-    parentage: "Norrsken SAS × Saga Arabica",
-    badge: "AVAILABLE",
-    price: "Price on application",
-    description:
-      "2-year-old chestnut colt. Exceptional bloodlines, brilliant future.",
-    image:
-      "https://images.unsplash.com/photo-1691567951778-c01762eb13cb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxBcmFiaWFuJTIwaG9yc2UlMjBmb2FsJTIweW91bmd8ZW58MXx8fHwxNzcyODEwNTU1fDA&ixlib=rb-4.1.0&q=80&w=400",
-  },
-];
 
 function SaleHorses() {
   return (
@@ -77,6 +31,7 @@ function SaleHorses() {
                 parentage={horse.parentage}
                 badge={horse.badge}
                 price={horse.price}
+                detailLink={`/sale-horses/${horse.id}`}
               />
               <p className="text-center font-['Raleway',sans-serif] text-[0.68rem] text-[#888] mt-2 leading-[1.7]">
                 {horse.description}

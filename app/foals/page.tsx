@@ -1,35 +1,9 @@
 import { PageHero } from "../components/PageHero";
 import { HorseCard } from "../components/HorseCard";
+import { foals } from "../data/catalogData";
 
 const heroImage =
   "https://images.unsplash.com/photo-1691567951778-c01762eb13cb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxBcmFiaWFuJTIwaG9yc2UlMjBmb2FsJTIweW91bmd8ZW58MXx8fHwxNzcyODEwNTU1fDA&ixlib=rb-4.1.0&q=80&w=1080";
-
-const foals = [
-  {
-    id: 1,
-    name: "Odin SAS 2025",
-    parentage: "Norrsken SAS × Aurora SAS",
-    year: "Colt · 2025",
-    image:
-      "https://images.unsplash.com/photo-1691567951778-c01762eb13cb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxBcmFiaWFuJTIwaG9yc2UlMjBmb2FsJTIweW91bmd8ZW58MXx8fHwxNzcyODEwNTU1fDA&ixlib=rb-4.1.0&q=80&w=400",
-  },
-  {
-    id: 2,
-    name: "Embla SAS 2025",
-    parentage: "Viking Star SAS × Isadora SAS",
-    year: "Filly · 2025",
-    image:
-      "https://images.unsplash.com/photo-1733065122105-8f6bd5886857?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxBcmFiaWFuJTIwaG9yc2UlMjBwb3J0cmFpdCUyMHByb2ZpbGV8ZW58MXx8fHwxNzcyODEwNTQ5fDA&ixlib=rb-4.1.0&q=80&w=400",
-  },
-  {
-    id: 3,
-    name: "Thor SAS 2025",
-    parentage: "Norrsken SAS × Saga Arabica",
-    year: "Colt · 2025",
-    image:
-      "https://images.unsplash.com/photo-1617745021057-ca21f1be34a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxncmV5JTIwQXJhYmlhbiUyMG1hcmUlMjBwYXN0dXJlfGVufDF8fHx8MTc3MjgxMDU1NXww&ixlib=rb-4.1.0&q=80&w=400",
-  },
-];
 
 function Foals() {
   return (
@@ -41,7 +15,7 @@ function Foals() {
           <div className="font-['Raleway',sans-serif] text-[0.65rem] tracking-[0.22em] text-[#5b9aaf] mb-2.5 uppercase">
             Class of 2025
           </div>
-          <p className="font-['Cormorant_Garamond',serif] italic text-[0.95rem] text-[#888] max-w-[480px] mx-auto my-0 leading-[1.9]">
+          <p className="font-['Cormorant_Garamond',serif] italic text-[0.95rem] text-[#888] max-w-120 mx-auto my-0 leading-[1.9]">
             Every foal born at Sweden Arabian Stud carries the promise of
             greatness. Bred from our finest bloodlines, they are the future of
             our programme.
@@ -55,6 +29,7 @@ function Foals() {
                 image={foal.image}
                 name={foal.name}
                 parentage={foal.parentage}
+                detailLink={`/foals/${foal.id}`}
               />
               <div className="text-center font-['Raleway', sans-serif] text-[0.6rem] text-[#aaa] tracking-widest mt-1 uppercase">
                 {foal.year}
