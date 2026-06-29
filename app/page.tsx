@@ -169,6 +169,7 @@ export default function Home() {
             { label: "Stallions", to: "/stallions" },
             { label: "Mares", to: "/mares" },
             { label: "Foals", to: "/foals" },
+            { label: "Fillies", to: "/fillies" },
             { label: "Sale Horses", to: "/sale-horses" },
           ].map((item) => (
             <Link key={item.to} href={item.to} className="cta-link-button">
