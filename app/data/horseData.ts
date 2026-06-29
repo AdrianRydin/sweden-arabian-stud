@@ -1,132 +1,111 @@
-// Centralized horse data structure
+export type HorseSection =
+  | "mares"
+  | "stallions"
+  | "foals"
+  | "fillies"
+  | "sale-horses";
+
+export type HorseStatus = "available" | "sold";
+
+export interface PedigreeHorse {
+  name: string;
+  info?: string;
+}
+
+export interface HorsePedigree {
+  horse: string;
+  sire: PedigreeHorse;
+  dam: PedigreeHorse;
+  sireSire: PedigreeHorse;
+  sireDam: PedigreeHorse;
+  damSire: PedigreeHorse;
+  damDam: PedigreeHorse;
+  sireSireSire?: PedigreeHorse;
+  sireSireDam?: PedigreeHorse;
+  sireDamSire?: PedigreeHorse;
+  sireDamDam?: PedigreeHorse;
+  damSireSire?: PedigreeHorse;
+  damSireDam?: PedigreeHorse;
+  damDamSire?: PedigreeHorse;
+  damDamDam?: PedigreeHorse;
+}
 
 export interface Horse {
-  id: string;
+  _id?: string;
   name: string;
   birthYear: number;
-  category: "Stallion" | "Mare" | "Foal" | "Sale Horse";
+  breed: string;
   description: string;
   image: string;
   owner: string;
   breeder: string;
   sire: string;
   dam: string;
-  backLink: string;
-  status?: "available" | "sold";
+  pedigree: HorsePedigree;
+  slug?: string;
+  section: HorseSection;
+  status: HorseStatus;
   price?: string;
-  pedigree: {
-    horse: string;
-    sire: { name: string; info: string };
-    dam: { name: string; info: string };
-    sireSire: { name: string; info: string };
-    sireDam: { name: string; info: string };
-    damSire: { name: string; info: string };
-    damDam: { name: string; info: string };
-    sireSireSire?: { name: string; info?: string };
-    sireSireDam?: { name: string; info?: string };
-    sireDamSire?: { name: string; info?: string };
-    sireDamDam?: { name: string; info?: string };
-    damSireSire?: { name: string; info?: string };
-    damSireDam?: { name: string; info?: string };
-    damDamSire?: { name: string; info?: string };
-    damDamDam?: { name: string; info?: string };
-  };
+  isVisible: boolean;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
-export const defaultHorses: Record<string, Horse> = {
-  "norrsken-sas": {
-    id: "norrsken-sas",
-    name: "Norrsken SAS",
-    birthYear: 2019,
-    category: "Stallion",
-    description:
-      "Norrsken SAS is a striking bay stallion with exceptional movement and a noble presence. He has inherited the refined head and elegant conformation that defines the Swedish Arabian breeding program. His temperament is exceptional, making him a pleasure to work with both in hand and under saddle.",
-    image:
-      "https://images.unsplash.com/photo-1721233864500-3c79767d41cd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXJrJTIwYmF5JTIwc3RhbGxpb24lMjBBcmFiaWFuJTIwaG9yc2V8ZW58MXx8fHwxNzcyODEwNTU5fDA&ixlib=rb-4.1.0&q=80&w=1080",
-    owner: "Sweden Arabian Stud",
-    breeder: "Sweden Arabian Stud",
-    sire: "Marwan Al Shaqab",
-    dam: "Nordica",
-    backLink: "/stallions",
-    status: "available",
-    pedigree: {
-      horse: "Norrsken SAS",
-      sire: { name: "Marwan Al Shaqab", info: "Grey Stallion" },
-      dam: { name: "Nordica", info: "Bay Mare" },
-      sireSire: { name: "Gazal Al Shaqab", info: "Grey" },
-      sireDam: { name: "Little Liza Fame", info: "Bay" },
-      damSire: { name: "QR Marc", info: "Bay" },
-      damDam: { name: "Nordic Star", info: "Grey" },
-      sireSireSire: { name: "Anaza El Farid" },
-      sireSireDam: { name: "Kajora" },
-      sireDamSire: { name: "Fame VF" },
-      sireDamDam: { name: "Katahza" },
-      damSireSire: { name: "Marwan Al Shaqab" },
-      damSireDam: { name: "Swete Dreams" },
-      damDamSire: { name: "Imperial Baarez" },
-      damDamDam: { name: "Nordia" },
-    },
-  },
-  "viking-star-sas": {
-    id: "viking-star-sas",
-    name: "Viking Star SAS",
-    birthYear: 2020,
-    category: "Stallion",
-    description:
-      "Viking Star SAS represents the perfect blend of classic Arabian type and modern athletic ability. His fluid movement and powerful presence command attention in any setting. With bloodlines combining international champions, he exemplifies our commitment to excellence in breeding.",
-    image:
-      "https://images.unsplash.com/photo-1689889580395-9af8ef7e6868?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxBcmFiaWFuJTIwaG9yc2UlMjBydW5uaW5nJTIwZmllbGR8ZW58MXx8fHwxNzcyODEwNTUwfDA&ixlib=rb-4.1.0&q=80&w=1080",
-    owner: "Sweden Arabian Stud",
-    breeder: "Sweden Arabian Stud",
-    sire: "WH Justice",
-    dam: "Stella Arabica",
-    backLink: "/stallions",
-    status: "available",
-    pedigree: {
-      horse: "Viking Star SAS",
-      sire: { name: "WH Justice", info: "Grey Stallion" },
-      dam: { name: "Stella Arabica", info: "Chestnut Mare" },
-      sireSire: { name: "Magnum Psyche", info: "Bay" },
-      sireDam: { name: "Vona Sher-Renea", info: "Grey" },
-      damSire: { name: "Gazal Al Shaqab", info: "Grey" },
-      damDam: { name: "Arabella", info: "Bay" },
-      sireSireSire: { name: "Padrons Psyche" },
-      sireSireDam: { name: "A Fancy Miracle" },
-      sireDamSire: { name: "Afire Bey V" },
-      sireDamDam: { name: "Wieza" },
-      damSireSire: { name: "Anaza El Farid" },
-      damSireDam: { name: "Kajora" },
-      damDamSire: { name: "Marwan Al Shaqab" },
-      damDamDam: { name: "Ariana" },
-    },
-  },
+export const horseSections: HorseSection[] = [
+  "stallions",
+  "mares",
+  "foals",
+  "fillies",
+  "sale-horses",
+];
+
+export const horseSectionLabels: Record<HorseSection, string> = {
+  stallions: "Stallion",
+  mares: "Mare",
+  foals: "Foal",
+  fillies: "Filly",
+  "sale-horses": "Sale Horse",
 };
 
-// Get horses from localStorage or use defaults
-export function getHorses(): Record<string, Horse> {
-  if (typeof window === "undefined") return defaultHorses;
+export const horseSectionPluralLabels: Record<HorseSection, string> = {
+  stallions: "Stallions",
+  mares: "Mares",
+  foals: "Foals",
+  fillies: "Fillies",
+  "sale-horses": "Sale Horses",
+};
 
-  const stored = localStorage.getItem("horses");
-  if (stored) {
-    try {
-      return JSON.parse(stored);
-    } catch {
-      return defaultHorses;
-    }
-  }
-  return defaultHorses;
-}
+export const horseSectionBackLinks: Record<HorseSection, string> = {
+  stallions: "/stallions",
+  mares: "/mares",
+  foals: "/foals",
+  fillies: "/fillies",
+  "sale-horses": "/sale-horses",
+};
 
-// Save horses to localStorage
-export function saveHorses(horses: Record<string, Horse>): void {
-  if (typeof window === "undefined") return;
-  localStorage.setItem("horses", JSON.stringify(horses));
-}
-
-// Generate URL-friendly ID from name
-export function generateId(name: string): string {
-  return name
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
+export function createEmptyHorse(): Horse {
+  return {
+    name: "",
+    birthYear: new Date().getFullYear(),
+    breed: "",
+    description: "",
+    image: "",
+    owner: "Sweden Arabian Stud",
+    breeder: "Sweden Arabian Stud",
+    sire: "",
+    dam: "",
+    section: "stallions",
+    status: "available",
+    price: "",
+    isVisible: true,
+    pedigree: {
+      horse: "",
+      sire: { name: "", info: "" },
+      dam: { name: "", info: "" },
+      sireSire: { name: "", info: "" },
+      sireDam: { name: "", info: "" },
+      damSire: { name: "", info: "" },
+      damDam: { name: "", info: "" },
+    },
+  };
 }

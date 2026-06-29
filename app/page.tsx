@@ -68,7 +68,7 @@ export default function Home() {
 
       <div className="relative w-full overflow-hidden family-section-height">
         <img
-          src={"/swedenarabian1.jpeg"}
+          src={"/swedenarabian2.jpg"}
           alt="Swedish Arabian Horse"
           className="w-full h-full object-cover block"
           style={{ objectPosition: "center 20%" }}
@@ -111,7 +111,7 @@ export default function Home() {
       <div className="grid grid-cols-1 md:grid-cols-2">
         <div className="relative overflow-hidden min-h-80 group">
           <img
-            src={"/swedenarabian1.jpeg"}
+            src={"/image0.jpeg"}
             alt="Sweden Arabian Stud Image"
             className="absolute inset-0 w-full h-full object-cover block transition-transform duration-500 group-hover:scale-105"
           />
@@ -126,7 +126,7 @@ export default function Home() {
         </div>
         <div className="relative overflow-hidden min-h-80 group">
           <img
-            src={"/swedenarabian1.jpeg"}
+            src={"/stallion.jpeg"}
             alt="Sweden Arabian Stud Image"
             className="absolute inset-0 w-full h-full object-cover block transition-transform duration-500 group-hover:scale-105"
           />

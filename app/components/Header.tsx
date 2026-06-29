@@ -10,8 +10,8 @@ const navLinks = [
   { to: "/stallions", label: "Stallions" },
   { to: "/mares", label: "Mares" },
   { to: "/foals", label: "Foals" },
+  { to: "/fillies", label: "Fillies" },
   { to: "/sale-horses", label: "Sale Horses" },
-  { to: "/news-media", label: "News & Media" },
   { to: "/contact", label: "Contact" },
 ];
 function Header() {
