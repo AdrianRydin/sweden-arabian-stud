@@ -1,12 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import mongoose from "mongoose";
 
-const MONGODB_URI = process.env.MONGODB_URI!;
-
-if (!MONGODB_URI) {
-  throw new Error("Please define MONGODB_URI");
-}
-
 let cached = (global as any).mongoose;
 
 if (!cached) {
@@ -17,6 +11,12 @@ export async function dbConnect() {
   if (cached.conn) return cached.conn;
 
   if (!cached.promise) {
+    const MONGODB_URI = process.env.MONGODB_URI;
+
+    if (!MONGODB_URI) {
+      throw new Error("Please define MONGODB_URI");
+    }
+
     cached.promise = mongoose.connect(MONGODB_URI);
   }
 
