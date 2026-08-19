@@ -1,5 +1,5 @@
 import { UnderConstruction } from "./components/UnderConstruction";
 
-export default function Home() {
+export default function NotFound() {
   return <UnderConstruction />;
 }
