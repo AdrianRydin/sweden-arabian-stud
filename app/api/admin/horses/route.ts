@@ -4,13 +4,7 @@ import { Horse } from "../../../models/Horse";
 import { slugify } from "../../../lib/slugify";
 import { requireAdmin } from "../../../lib/auth";
 
-const allowedSections = [
-  "mares",
-  "stallions",
-  "foals",
-  "sale-horses",
-  "fillies",
-];
+const allowedSections = ["females", "males", "sale-horses"];
 
 export async function GET(req: NextRequest) {
   const unauthorized = await requireAdmin(req);

@@ -2,13 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { dbConnect } from "../../lib/mongodb";
 import { Horse } from "../../models/Horse";
 
-const allowedSections = [
-  "mares",
-  "stallions",
-  "foals",
-  "sale-horses",
-  "fillies",
-];
+const allowedSections = ["females", "males", "sale-horses"];
 
 export async function GET(req: NextRequest) {
   try {

@@ -57,7 +57,7 @@ const HorseSchema = new mongoose.Schema(
     section: {
       type: String,
       required: true,
-      enum: ["mares", "stallions", "foals", "sale-horses", "fillies"],
+      enum: ["females", "males", "sale-horses"],
     },
     status: {
       type: String,

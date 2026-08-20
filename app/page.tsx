@@ -31,8 +31,8 @@ export default function Home() {
           </h1>
           <div className="mt-6 flex gap-3.5 flex-wrap justify-center px-5">
             {[
-              { label: "Stallions", to: "/stallions" },
-              { label: "Mares", to: "/mares" },
+              { label: "Males", to: "/males" },
+              { label: "Females", to: "/females" },
               { label: "Sale Horses", to: "/sale-horses" },
             ].map((item) => (
               <Link key={item.to} href={item.to} className="hero-cta-button">
@@ -101,9 +101,9 @@ export default function Home() {
           <p>
             Every horse at Sweden Arabian Stud is treated as family — raised
             with care, trained with patience, and presented to the world with
-            pride. From our championship stallions to our elegant mares and
-            their promising foals, every horse represents our commitment to
-            excellence in the Arabian breed.
+            pride. From our championship males to our elegant females, every
+            horse represents our commitment to excellence in the Arabian
+            breed.
           </p>
         </div>
       </div>
@@ -166,10 +166,8 @@ export default function Home() {
         </div>
         <div className="flex gap-3.5 justify-center flex-wrap">
           {[
-            { label: "Stallions", to: "/stallions" },
-            { label: "Mares", to: "/mares" },
-            { label: "Foals", to: "/foals" },
-            { label: "Fillies", to: "/fillies" },
+            { label: "Males", to: "/males" },
+            { label: "Females", to: "/females" },
             { label: "Sale Horses", to: "/sale-horses" },
           ].map((item) => (
             <Link key={item.to} href={item.to} className="cta-link-button">

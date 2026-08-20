@@ -1,9 +1,4 @@
-export type HorseSection =
-  | "mares"
-  | "stallions"
-  | "foals"
-  | "fillies"
-  | "sale-horses";
+export type HorseSection = "females" | "males" | "sale-horses";
 
 export type HorseStatus = "available" | "sold";
 
@@ -52,34 +47,26 @@ export interface Horse {
 }
 
 export const horseSections: HorseSection[] = [
-  "stallions",
-  "mares",
-  "foals",
-  "fillies",
+  "males",
+  "females",
   "sale-horses",
 ];
 
 export const horseSectionLabels: Record<HorseSection, string> = {
-  stallions: "Stallion",
-  mares: "Mare",
-  foals: "Foal",
-  fillies: "Filly",
+  males: "Male",
+  females: "Female",
   "sale-horses": "Sale Horse",
 };
 
 export const horseSectionPluralLabels: Record<HorseSection, string> = {
-  stallions: "Stallions",
-  mares: "Mares",
-  foals: "Foals",
-  fillies: "Fillies",
+  males: "Males",
+  females: "Females",
   "sale-horses": "Sale Horses",
 };
 
 export const horseSectionBackLinks: Record<HorseSection, string> = {
-  stallions: "/stallions",
-  mares: "/mares",
-  foals: "/foals",
-  fillies: "/fillies",
+  males: "/males",
+  females: "/females",
   "sale-horses": "/sale-horses",
 };
 
@@ -94,7 +81,7 @@ export function createEmptyHorse(): Horse {
     breeder: "Sweden Arabian Stud",
     sire: "",
     dam: "",
-    section: "stallions",
+    section: "males",
     status: "available",
     price: "",
     isVisible: true,

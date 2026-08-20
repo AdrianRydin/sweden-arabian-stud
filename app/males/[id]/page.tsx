@@ -2,12 +2,12 @@ import { HorseDetailPage } from "../../components/HorseDetailPage";
 
 export const dynamic = "force-dynamic";
 
-interface FoalDetailPageProps {
+interface MaleDetailPageProps {
   params: Promise<{ id: string }>;
 }
 
-export default async function FoalDetailPage({ params }: FoalDetailPageProps) {
+export default async function MaleDetailPage({ params }: MaleDetailPageProps) {
   const { id } = await params;
 
-  return <HorseDetailPage section="foals" slug={id} />;
+  return <HorseDetailPage section="males" slug={id} />;
 }

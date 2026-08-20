@@ -7,10 +7,8 @@ import Image from "next/image";
 
 const navLinks = [
   { to: "/", label: "Home" },
-  { to: "/stallions", label: "Stallions" },
-  { to: "/mares", label: "Mares" },
-  { to: "/foals", label: "Foals" },
-  { to: "/fillies", label: "Fillies" },
+  { to: "/males", label: "Males" },
+  { to: "/females", label: "Females" },
   { to: "/sale-horses", label: "Sale Horses" },
   { to: "/contact", label: "Contact" },
 ];
