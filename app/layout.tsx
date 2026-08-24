@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/logo.png" sizes="any" />
+        <link rel="icon" href="./icon.ico" sizes="32x32" />
       </head>
       <body
         className={`${raleway.variable}  antialiased min-h-screen bg-white `}
