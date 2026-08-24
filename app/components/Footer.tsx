@@ -6,21 +6,21 @@ const navLinks = [
   { to: "/", label: "Home" },
   { to: "/males", label: "Males" },
   { to: "/females", label: "Females" },
-  { to: "/sale-horses", label: "Sale Horses" },
-  { to: "/news-media", label: "News & Media" },
+  { to: "/stud", label: "Our Stud" },
+  { to: "/moments", label: "Moments" },
   { to: "/contact", label: "Contact" },
 ];
 
 function Footer() {
   return (
-    <footer className="bg-[#2a2a2a] pt-14 pb-6">
+    <footer className="bg-[#CBBD93] pt-14 pb-6">
       <div className="max-w-350 mx-auto px-10">
         <div className="footer-grid">
           {/* Brand */}
-          <div>
+          <div className="flex flex-col items-center md:items-start text-center md:text-left">
             <div className="mb-4">
               <Image
-                src={"/logo.png"}
+                src={"/logo-1-black-with-text-cropped.png"}
                 alt="Sweden Arabian Stud"
                 width={150}
                 height={100}
@@ -32,7 +32,7 @@ function Footer() {
                 E:{" "}
                 <Link
                   href="mailto:kathleen@swedenarabianstud.com"
-                  className="text-[#5b9aaf] no-underline hover:text-[#4a8899] transition-colors"
+                  className="text-[#5b9aaf] no-underline decoration-0 hover:text-[#4a8899] transition-colors"
                 >
                   kathleen@swedenarabianstud.com
                 </Link>
@@ -41,7 +41,7 @@ function Footer() {
           </div>
 
           {/* Quick Links */}
-          <div>
+          <div className="flex flex-col items-center md:items-start text-center md:text-left">
             <div className="footer-section-title">Quick Links</div>
             <div className="grid grid-cols-2 gap-x-5 gap-y-1.5">
               {navLinks.map((link) => (
@@ -53,9 +53,9 @@ function Footer() {
           </div>
 
           {/* Connect */}
-          <div>
+          <div className="flex flex-col items-center md:items-start text-center md:text-left">
             <div className="footer-section-title">Connect With Us</div>
-            <div className="flex flex-col gap-2.5">
+            <div className="flex flex-col items-center md:items-start gap-2.5">
               <Link
                 href="https://www.facebook.com/kathleenohlsson"
                 className="footer-social-link"
@@ -76,7 +76,7 @@ function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-[rgba(255,255,255,0.08)] pt-5 mt-10 text-center footer-copyright">
+        <div className="border-t border-[rgba(0,0,0,0.1)] pt-5 mt-10 text-center footer-copyright">
           © 2026 Sweden Arabian Stud. All Rights Reserved.
         </div>
       </div>
@@ -86,27 +86,30 @@ function Footer() {
         .footer-contact-info {
           font-family: 'Raleway', sans-serif;
           font-size: 0.7rem;
-          color: rgba(255,255,255,0.45);
+          color: rgba(0,0,0,0.45);
           line-height: 2;
         }
         .footer-section-title {
           font-family: 'Raleway', sans-serif;
-          font-size: 0.6rem;
+          font-size: 0.9rem;
           letter-spacing: 0.2em;
-          color: rgba(255,255,255,0.3);
+          color: rgba(0,0,0,0.85);
           margin-bottom: 16px;
           text-transform: uppercase;
         }
         .footer-link {
           text-decoration: none;
           font-family: 'Raleway', sans-serif;
-          font-size: 0.68rem;
-          color: rgba(255,255,255,0.45);
+          font-size: 0.8rem;
+          color: rgba(0,0,0,0.45);
           letter-spacing: 0.04em;
           transition: color 0.2s;
+          padding: 0.4rem;
+          padding-left: 0rem;
+
         }
         .footer-link:hover {
-          color: rgba(255,255,255,0.7);
+          color: #5b9aaf;
         }
         .footer-social-link {
           display: flex;
@@ -114,17 +117,17 @@ function Footer() {
           gap: 8px;
           text-decoration: none;
           font-family: 'Raleway', sans-serif;
-          font-size: 0.68rem;
-          color: rgba(255,255,255,0.45);
+          font-size: 0.8rem;
+          color: rgba(0,0,0,0.7);
           transition: color 0.2s;
         }
         .footer-social-link:hover {
-          color: rgba(255,255,255,0.7);
+          color: #5b9aaf;
         }
         .footer-copyright {
           font-family: 'Raleway', sans-serif;
           font-size: 0.6rem;
-          color: rgba(255,255,255,0.25);
+          color: rgba(0,0,0,0.4);
           letter-spacing: 0.1em;
         }
 

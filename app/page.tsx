@@ -5,9 +5,9 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div>
-      <div className="relative w-full home-hero-height">
+      <div className="relative w-full home-hero-height brightness-95">
         <Image
-          src={"/swedenarabian1.jpeg"}
+          src={"/swedenarabian1.jpg"}
           alt="Hero image"
           fill
           className="object-cover block"
@@ -22,18 +22,19 @@ export default function Home() {
         />
 
         {/* Hero Text Overlay */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center pb-[10%]">
+        <div className="absolute inset-0 flex flex-col items-center justify-center pb-[10%] mt-50">
           <div className="uppercase mb-3.5 hero-subtitle">
             Sweden Arabian Stud
           </div>
           <h1 className="text-white m-0 text-center hero-title">
-            Aspire to inspire.
+            Aspire to inspire
           </h1>
           <div className="mt-6 flex gap-3.5 flex-wrap justify-center px-5">
             {[
               { label: "Males", to: "/males" },
               { label: "Females", to: "/females" },
-              { label: "Sale Horses", to: "/sale-horses" },
+              { label: "Our Stud", to: "/stud" },
+              { label: "Moments", to: "/moments" },
             ].map((item) => (
               <Link key={item.to} href={item.to} className="hero-cta-button">
                 {item.label}
@@ -48,43 +49,35 @@ export default function Home() {
           Born From Dreams
         </div>
         <h2 className="section-title-italic mb-6">
-          Where the Arabian spirit thrives
+          Pure Arabian bloodlines. Refined by the North.
         </h2>
         <div className="max-w-155 mx-auto intro-text">
-          <p>In the heart of Sweden, where forests meet open skies,</p>
           <p>
-            a passion for the world&apos;s most ancient and noble breed was
-            born.
+            From the quiet landscapes of Scandinavia we breed Arabian horses,
           </p>
-          <p>
-            Where the elegance of the Arabian is preserved in timeless beauty.
-          </p>
-          <p>In this land of Nordic wonder, dreams are woven into reality.</p>
-          <p>Sweden Arabian Stud is dedicated to those who love horses.</p>
-          <p>To those for whom the Arabian is more than a breed —</p>
-          <p>it is a way of life.</p>
+          <p>with passion, dedication and a vision for excellence.</p>
+          <p>Sweden Arabian Stud is a boutique breeding program</p>
+          <p>focused on quality, strong bloodlines and exceptional</p>
+          <p>Arabian horses with international potential.</p>
+          <p>With a careful selected group of few mares,</p>
+          <p>we strive to create horses that inspire in the show ring,</p>
+          <p>in breeding and for generations to come.</p>
         </div>
       </div>
 
       <div className="relative w-full overflow-hidden family-section-height">
         <img
-          src={"/swedenarabian2.jpg"}
+          src={"/gucci-linda.jpg"}
           alt="Swedish Arabian Horse"
           className="w-full h-full object-cover block"
-          style={{ objectPosition: "center 20%" }}
+          style={{ objectPosition: "center 50%" }}
         />
         <div className="absolute inset-0 family-gradient" />
         <div className="absolute top-1/2 -translate-y-1/2 max-w-95 family-content-left">
           <div className="uppercase mb-2.5 section-label-teal-light">
             Our Family
           </div>
-          <div className="family-title mb-3">
-            Passion passed down through generations.
-          </div>
-          <div className="family-description">
-            For us, horses are family. We share our lives with these magnificent
-            animals every day.
-          </div>
+          <div className="family-title mb-3">From the North to the World</div>
         </div>
       </div>
 
@@ -102,80 +95,42 @@ export default function Home() {
             Every horse at Sweden Arabian Stud is treated as family — raised
             with care, trained with patience, and presented to the world with
             pride. From our championship males to our elegant females, every
-            horse represents our commitment to excellence in the Arabian
-            breed.
+            horse represents our commitment to excellence in the Arabian breed.
           </p>
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2">
-        <div className="relative overflow-hidden min-h-80 group">
-          <img
-            src={"/image0.jpeg"}
-            alt="Sweden Arabian Stud Image"
-            className="absolute inset-0 w-full h-full object-cover block transition-transform duration-500 group-hover:scale-105"
-          />
-          <div className="absolute inset-0 bg-black/30 flex items-end feature-image-padding">
-            <div>
-              <div className="feature-image-title mb-1">Our Stud</div>
-              <div className="feature-image-subtitle">
-                A sanctuary for the Arabian breed
+        <Link href={"/stud"}>
+          <div className="relative overflow-hidden min-h-80 group">
+            <img
+              src={"/palmah-glenn.jpg"}
+              alt="Sweden Arabian Stud Image"
+              className="absolute inset-0 w-full h-full object-cover block transition-transform duration-500 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-black/30 flex items-end feature-image-padding">
+              <div>
+                <div className="feature-image-title mb-1">Our Stud</div>
               </div>
             </div>
           </div>
-        </div>
-        <div className="relative overflow-hidden min-h-80 group">
-          <img
-            src={"/stallion.jpeg"}
-            alt="Sweden Arabian Stud Image"
-            className="absolute inset-0 w-full h-full object-cover block transition-transform duration-500 group-hover:scale-105"
-          />
-          <div className="absolute inset-0 bg-black/30 flex items-end feature-image-padding">
-            <div>
-              <div className="feature-image-title mb-1">Our Horses</div>
-              <div className="feature-image-subtitle">
-                Pure beauty, pure spirit
+        </Link>
+        <Link href={"/moments"}>
+          <div className="relative overflow-hidden min-h-80 group">
+            <img
+              src={"/stallion.jpeg"}
+              alt="Sweden Arabian Stud Image"
+              className="absolute inset-0 w-full h-full object-cover block transition-transform duration-500 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-black/30 flex items-end feature-image-padding">
+              <div>
+                <div className="feature-image-title mb-1">Moments</div>
               </div>
             </div>
           </div>
-        </div>
+        </Link>
       </div>
 
-      {/* Stats section */}
-      <div className="bg-[#2a2a2a] stats-section">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-8 max-w-225 mx-auto">
-          {[
-            { number: "12+", label: "Champion Stallions" },
-            { number: "30+", label: "Broodmares" },
-            { number: "15+", label: "Years of Excellence" },
-            { number: "80+", label: "Horses Bred" },
-          ].map((stat) => (
-            <div key={stat.label} className="text-center">
-              <div className="stat-number mb-2">{stat.number}</div>
-              <div className="stat-label">{stat.label}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* CTA Section */}
-      <div className="bg-white text-center cta-section">
-        <div className="cta-title mb-3">Discover Our Horses</div>
-        <div className="cta-subtitle mb-8">
-          Exceptional bloodlines, extraordinary horses
-        </div>
-        <div className="flex gap-3.5 justify-center flex-wrap">
-          {[
-            { label: "Males", to: "/males" },
-            { label: "Females", to: "/females" },
-            { label: "Sale Horses", to: "/sale-horses" },
-          ].map((item) => (
-            <Link key={item.to} href={item.to} className="cta-link-button">
-              {item.label}
-            </Link>
-          ))}
-        </div>
-      </div>
       <style>{`
         .home-hero-height {
           height: clamp(500px, 90vh, 1000px);
@@ -187,7 +142,7 @@ export default function Home() {
           font-family: 'Raleway', sans-serif;
           font-size: 0.65rem;
           letter-spacing: 0.35em;
-          color: rgba(255,255,255,0.85);
+          color: rgba(255,255,255,1);
         }
         .hero-title {
           font-family: 'Cormorant Garamond', serif;
@@ -203,12 +158,14 @@ export default function Home() {
           font-size: 0.62rem;
           letter-spacing: 0.2em;
           text-transform: uppercase;
-          color: #fff;
+          color: #aaaaa;
           border: 1px solid rgba(255,255,255,0.6);
           padding: 9px 22px;
           backdrop-filter: blur(4px);
-          background: rgba(255,255,255,0.1);
+          background: rgba(255,255,255,0.4);
           transition: all 0.25s;
+          width: 150px;
+          text-align: center;
         }
         .hero-cta-button:hover {
           background: #5b9aaf;
@@ -228,6 +185,7 @@ export default function Home() {
           font-size: 0.6rem;
           letter-spacing: 0.25em;
           color: #5b9aaf;
+          
         }
         .section-title-italic {
           font-family: 'Cormorant Garamond', serif;

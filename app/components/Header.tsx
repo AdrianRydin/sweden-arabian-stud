@@ -7,9 +7,10 @@ import Image from "next/image";
 
 const navLinks = [
   { to: "/", label: "Home" },
+  { to: "/stud", label: "Our Stud" },
   { to: "/males", label: "Males" },
   { to: "/females", label: "Females" },
-  { to: "/sale-horses", label: "Sale Horses" },
+  { to: "/moments", label: "Moments" },
   { to: "/contact", label: "Contact" },
 ];
 function Header() {
@@ -32,14 +33,14 @@ function Header() {
   }, []);
 
   return (
-    <nav className="sticky top-0 z-100 nav-background shadow-[0_2px_20px_rgba(0,0,0,0.3)]">
+    <nav className="sticky top-0 z-100 bg-[#CBBD93] shadow-[0_2px_20px_rgba(0,0,0,0.3)]">
       <div className="max-w-350 mx-auto flex items-center justify-between px-8 h-22.5">
         <Link href={"/"}>
           <Image
-            src={"/logo.png"}
+            src={"/logo-1-black-no-text.png"}
             alt="logo"
             height={100}
-            width={150}
+            width={100}
             className="object-contain"
           />
         </Link>
@@ -53,7 +54,7 @@ function Header() {
                 key={link.to}
                 href={link.to}
                 className={`no-underline leading-[0.7rem] tracking-[0.1rem] 
-                    ${isActive ? "text-white font-bold" : "text-[rgba(255,255,255,0.55)] font-normal"} 
+                    ${isActive ? "text-black font-bold" : "text-[rgba(0,0,0,0.55)] font-normal"} 
                     px-2.5 py-1.5 ${isActive ? "border-b border-[rgba(91,154,175,0.9)]" : "border-b border-transparent"} 
                     transition-colors whitespace-nowrap`}
               >
@@ -161,11 +162,11 @@ function Header() {
           width: 40px;
           height: 40px;
           border-radius: 50%;
-          background: rgba(255,255,255,0.12);
+          background: rgba(0,0,0,0.12);
           display: flex;
           align-items: center;
           justify-content: center;
-          color: rgba(255,255,255,0.7);
+          color: rgba(0,0,0,0.7);
           text-decoration: none;
           transition: background 0.2s;
         }

@@ -14,7 +14,7 @@ export function PageHero({ title, backgroundImage }: PageHeroProps) {
           src={backgroundImage}
           alt={title}
           fill
-          className="object-cover object-[center_30%] brightness-[0.45] grayscale-[0.3]"
+          className="object-cover object-[center_30%] brightness-[0.75] grayscale-[0.3]"
         />
 
         <div className="absolute inset-0 bg-linear-to-b from-[rgba(50,50,50,0.3)] via-[rgba(50,50,50,0.15)] via-60% to-[rgba(50,50,50,0.5)]" />
