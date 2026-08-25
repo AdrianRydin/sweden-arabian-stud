@@ -92,11 +92,10 @@ export function MomentEditPanel({
           </div>
 
           <div className="mb-5">
-            <label className="edit-panel-label">Description *</label>
+            <label className="edit-panel-label">Description</label>
             <textarea
               value={formData.description}
               onChange={(e) => updateField("description", e.target.value)}
-              required
               rows={6}
               className="edit-panel-input resize-y"
             />

@@ -69,9 +69,11 @@ export default async function MomentDetailPage({
               {moment.title}
             </h1>
 
-            <p className="whitespace-pre-line font-['Raleway',sans-serif] text-[0.82rem] leading-7 text-(--text-secondary)">
-              {moment.description}
-            </p>
+            {moment.description && (
+              <p className="whitespace-pre-line font-['Raleway',sans-serif] text-[0.82rem] leading-7 text-(--text-secondary)">
+                {moment.description}
+              </p>
+            )}
           </div>
         </div>
       </div>

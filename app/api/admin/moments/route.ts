@@ -33,14 +33,9 @@ export async function POST(req: NextRequest) {
 
     const body = await req.json();
 
-    const { title, description, images, isVisible = true } = body;
+    const { title, description = "", images, isVisible = true } = body;
 
-    if (
-      !title ||
-      !description ||
-      !Array.isArray(images) ||
-      images.length === 0
-    ) {
+    if (!title || !Array.isArray(images) || images.length === 0) {
       return NextResponse.json(
         { message: "Missing required fields" },
         { status: 400 },
