@@ -4,13 +4,17 @@ import { useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-interface MomentGalleryProps {
+interface ImageGalleryProps {
   images: string[];
-  title: string;
+  alt: string;
 }
 
-export function MomentGallery({ images, title }: MomentGalleryProps) {
+export function ImageGallery({ images, alt }: ImageGalleryProps) {
   const [activeIndex, setActiveIndex] = useState(0);
+
+  if (images.length === 0) {
+    return null;
+  }
 
   const goTo = (index: number) => {
     setActiveIndex((index + images.length) % images.length);
@@ -21,7 +25,7 @@ export function MomentGallery({ images, title }: MomentGalleryProps) {
       <div className="relative aspect-4/3 w-full overflow-hidden bg-[#f0f0ec]">
         <Image
           src={images[activeIndex]}
-          alt={`${title} - image ${activeIndex + 1}`}
+          alt={`${alt} - image ${activeIndex + 1}`}
           fill
           className="object-cover"
           priority
@@ -70,7 +74,7 @@ export function MomentGallery({ images, title }: MomentGalleryProps) {
             >
               <Image
                 src={image}
-                alt={`${title} thumbnail ${index + 1}`}
+                alt={`${alt} thumbnail ${index + 1}`}
                 fill
                 className="object-cover"
               />

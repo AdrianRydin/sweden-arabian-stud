@@ -5,7 +5,7 @@ import { Moment as MomentModel } from "../models/Moment";
 
 export const dynamic = "force-dynamic";
 
-const heroImage = "/image0.jpeg";
+const heroImage = "/BA8I3416.jpg";
 
 type LeanMoment = {
   _id: unknown;
@@ -34,7 +34,11 @@ async function MomentsPage() {
 
   return (
     <div>
-      <PageHero title="Moments" backgroundImage={heroImage} />
+      <PageHero
+        title="Moments"
+        backgroundImage={heroImage}
+        focalPoint="center 45%"
+      />
 
       <div className="bg-white px-[clamp(20px,6vw,80px)] py-[clamp(32px,5vw,60px)] pb-[clamp(40px,6vw,80px)]">
         <div className="mb-12 text-center">

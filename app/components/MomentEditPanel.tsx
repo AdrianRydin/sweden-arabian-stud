@@ -1,10 +1,9 @@
-/* eslint-disable @next/next/no-img-element */
-
 "use client";
 
 import { useState, useEffect } from "react";
-import { X, Save, Trash2 } from "lucide-react";
+import { X, Save } from "lucide-react";
 import { createEmptyMoment, Moment } from "../data/momentData";
+import { ImageManager } from "./ImageManager";
 
 interface MomentEditPanelProps {
   moment: Moment;
@@ -33,8 +32,7 @@ export function MomentEditPanel({
   const [formData, setFormData] = useState<Moment>(() =>
     normalizeMoment(moment),
   );
-  const [isUploading, setIsUploading] = useState(false);
-  const [uploadError, setUploadError] = useState("");
+  const [imagesError, setImagesError] = useState("");
 
   useEffect(() => {
     setFormData(normalizeMoment(moment));
@@ -47,63 +45,11 @@ export function MomentEditPanel({
     }));
   };
 
-  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-
-    if (!files || files.length === 0) return;
-
-    try {
-      setIsUploading(true);
-      setUploadError("");
-
-      const uploadedUrls: string[] = [];
-
-      for (const file of Array.from(files)) {
-        const body = new FormData();
-        body.append("file", file);
-        body.append("folder", "sweden-arabian-stud/moments");
-
-        const res = await fetch("/api/admin/upload", {
-          method: "POST",
-          body,
-        });
-
-        const data = await res.json();
-
-        if (!res.ok) {
-          throw new Error(data.message || "Failed to upload image");
-        }
-
-        uploadedUrls.push(data.url);
-      }
-
-      setFormData((current) => ({
-        ...current,
-        images: [...current.images, ...uploadedUrls],
-      }));
-    } catch (error) {
-      console.error(error);
-      setUploadError(
-        error instanceof Error ? error.message : "Could not upload image.",
-      );
-    } finally {
-      setIsUploading(false);
-      e.target.value = "";
-    }
-  };
-
-  const handleRemoveImage = (index: number) => {
-    setFormData((current) => ({
-      ...current,
-      images: current.images.filter((_, i) => i !== index),
-    }));
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (formData.images.length === 0) {
-      setUploadError("At least one image is required.");
+      setImagesError("At least one image is required.");
       return;
     }
 
@@ -173,58 +119,19 @@ export function MomentEditPanel({
           <div className="mb-5">
             <label className="edit-panel-label">Upload Images *</label>
 
-            <input
-              type="file"
-              accept="image/*"
-              multiple
-              onChange={handleImageUpload}
-              disabled={isUploading}
-              className="edit-panel-input"
+            <ImageManager
+              images={formData.images}
+              onChange={(images) => {
+                updateField("images", images);
+                setImagesError("");
+              }}
+              uploadFolder="sweden-arabian-stud/moments"
             />
 
-            <p className="mt-2 font-['Raleway',sans-serif] text-[0.68rem] text-[var(--text-muted)]">
-              The first image is used as the cover image on the Moments page.
-            </p>
-
-            {isUploading && (
-              <p className="mt-2 font-['Raleway',sans-serif] text-[0.7rem] text-[var(--text-muted)]">
-                Uploading images...
-              </p>
-            )}
-
-            {uploadError && (
+            {imagesError && (
               <p className="mt-2 font-['Raleway',sans-serif] text-[0.7rem] text-red-600">
-                {uploadError}
+                {imagesError}
               </p>
-            )}
-
-            {formData.images.length > 0 && (
-              <div className="mt-4 grid grid-cols-3 gap-3">
-                {formData.images.map((image, index) => (
-                  <div key={image + index} className="relative">
-                    <img
-                      src={image}
-                      alt={`Moment image ${index + 1}`}
-                      className="h-24 w-full rounded object-cover"
-                    />
-
-                    {index === 0 && (
-                      <span className="absolute top-1 left-1 bg-(--teal) px-1.5 py-0.5 font-['Raleway',sans-serif] text-[0.55rem] tracking-[0.08em] text-white uppercase">
-                        Cover
-                      </span>
-                    )}
-
-                    <button
-                      type="button"
-                      onClick={() => handleRemoveImage(index)}
-                      aria-label="Remove image"
-                      className="absolute top-1 right-1 flex h-6 w-6 cursor-pointer items-center justify-center rounded-full border-0 bg-black/60 text-white transition hover:bg-[#d4183d]"
-                    >
-                      <Trash2 size={12} />
-                    </button>
-                  </div>
-                ))}
-              </div>
             )}
           </div>
         </section>
@@ -233,7 +140,7 @@ export function MomentEditPanel({
           <button
             type="button"
             onClick={onCancel}
-            disabled={isSaving || isUploading}
+            disabled={isSaving}
             className="cursor-pointer rounded border border-[#d0d0d0] bg-white px-7 py-3 font-['Raleway'] text-[0.7rem] tracking-[0.1em] text-[var(--text-secondary)] uppercase transition hover:bg-[#f5f5f5] disabled:cursor-not-allowed disabled:opacity-60"
           >
             Cancel
@@ -241,17 +148,15 @@ export function MomentEditPanel({
 
           <button
             type="submit"
-            disabled={isSaving || isUploading}
+            disabled={isSaving}
             className="flex cursor-pointer items-center gap-2 rounded border-0 bg-[var(--teal)] px-7 py-3 font-['Raleway'] text-[0.7rem] tracking-[0.1em] text-white uppercase transition hover:bg-[var(--teal-dark)] disabled:cursor-not-allowed disabled:opacity-60"
           >
             <Save size={16} />
-            {isUploading
-              ? "Uploading..."
-              : isSaving
-                ? "Saving..."
-                : isCreating
-                  ? "Create Moment"
-                  : "Save Changes"}
+            {isSaving
+              ? "Saving..."
+              : isCreating
+                ? "Create Moment"
+                : "Save Changes"}
           </button>
         </div>
       </form>

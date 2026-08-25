@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { dbConnect } from "../lib/mongodb";
@@ -9,6 +8,7 @@ import {
   horseSectionLabels,
   horseSectionPluralLabels,
 } from "../data/horseData";
+import { ImageGallery } from "./ImageGallery";
 
 type LeanHorse = {
   _id: unknown;
@@ -17,6 +17,7 @@ type LeanHorse = {
   breed?: string;
   description?: string;
   image?: string;
+  images?: string[];
   owner?: string;
   breeder?: string;
   sire?: string;
@@ -52,7 +53,7 @@ async function getHorseBySlug(section: HorseSection, slug: string) {
     birthYear: horse.birthYear,
     breed: horse.breed || "",
     description: horse.description || "",
-    image: horse.image || "",
+    images: horse.images?.length ? horse.images : horse.image ? [horse.image] : [],
     owner: horse.owner || "",
     breeder: horse.breeder || "",
     sire: horse.sire || "",
@@ -85,15 +86,7 @@ export async function HorseDetailPage({ section, slug }: HorseDetailPageProps) {
         </Link>
 
         <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-2 md:gap-10">
-          <div className="relative aspect-4/3 w-full overflow-hidden">
-            <Image
-              src={horse.image}
-              alt={horse.name}
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
+          <ImageGallery images={horse.images} alt={horse.name} />
 
           <div>
             <div className="mb-2 font-['Raleway',sans-serif] text-[0.65rem] tracking-[0.16em] text-[#5b9aaf] uppercase">

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { dbConnect } from "../../lib/mongodb";
 import { Moment as MomentModel } from "../../models/Moment";
-import { MomentGallery } from "../../components/MomentGallery";
+import { ImageGallery } from "../../components/ImageGallery";
 
 export const dynamic = "force-dynamic";
 
@@ -62,7 +62,7 @@ export default async function MomentDetailPage({
         </Link>
 
         <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-2 md:gap-10">
-          <MomentGallery images={moment.images} title={moment.title} />
+          <ImageGallery images={moment.images} alt={moment.title} />
 
           <div>
             <h1 className="mb-6 font-['Cormorant_Garamond',serif] text-4xl text-[#333] md:text-5xl">

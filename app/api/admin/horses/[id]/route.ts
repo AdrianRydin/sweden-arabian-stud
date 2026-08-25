@@ -61,12 +61,22 @@ export async function PATCH(req: NextRequest, { params }: RouteParams) {
       );
     }
 
+    if (
+      "images" in body &&
+      (!Array.isArray(body.images) || body.images.length === 0)
+    ) {
+      return NextResponse.json(
+        { message: "At least one image is required" },
+        { status: 400 },
+      );
+    }
+
     const allowedUpdateFields = [
       "name",
       "birthYear",
       "breed",
       "description",
-      "image",
+      "images",
       "owner",
       "breeder",
       "sire",
@@ -84,6 +94,10 @@ export async function PATCH(req: NextRequest, { params }: RouteParams) {
       if (field in body) {
         updateData[field] = body[field];
       }
+    }
+
+    if (Array.isArray(body.images) && body.images.length > 0) {
+      updateData.image = body.images[0];
     }
 
     if (typeof body.name === "string" && body.name !== existingHorse.name) {

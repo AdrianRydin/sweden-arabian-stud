@@ -4,9 +4,14 @@ import { TornEdge } from "./TornEdge";
 interface PageHeroProps {
   title: string;
   backgroundImage: string;
+  focalPoint?: string;
 }
 
-export function PageHero({ title, backgroundImage }: PageHeroProps) {
+export function PageHero({
+  title,
+  backgroundImage,
+  focalPoint = "center 30%",
+}: PageHeroProps) {
   return (
     <div className="relative">
       <div className="w-full h-[clamp(200px,30vw,360px)] relative overflow-hidden">
@@ -14,7 +19,8 @@ export function PageHero({ title, backgroundImage }: PageHeroProps) {
           src={backgroundImage}
           alt={title}
           fill
-          className="object-cover object-[center_30%] brightness-[0.75] grayscale-[0.3]"
+          style={{ objectPosition: focalPoint }}
+          className="object-cover brightness-[0.75] grayscale-[0.3]"
         />
 
         <div className="absolute inset-0 bg-linear-to-b from-[rgba(50,50,50,0.3)] via-[rgba(50,50,50,0.15)] via-60% to-[rgba(50,50,50,0.5)]" />

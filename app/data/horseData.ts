@@ -32,6 +32,7 @@ export interface Horse {
   breed: string;
   description: string;
   image: string;
+  images: string[];
   owner: string;
   breeder: string;
   sire: string;
@@ -77,6 +78,7 @@ export function createEmptyHorse(): Horse {
     breed: "",
     description: "",
     image: "",
+    images: [],
     owner: "Sweden Arabian Stud",
     breeder: "Sweden Arabian Stud",
     sire: "",

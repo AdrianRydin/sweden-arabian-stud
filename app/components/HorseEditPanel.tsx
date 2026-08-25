@@ -1,6 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 "use client";
 
 import { useState, useEffect } from "react";
@@ -12,6 +9,7 @@ import {
   horseSectionLabels,
   horseSections,
 } from "../data/horseData";
+import { ImageManager } from "./ImageManager";
 
 interface HorseEditPanelProps {
   horse: Horse;
@@ -44,6 +42,11 @@ function normalizeHorse(horse: Horse): Horse {
   return {
     ...emptyHorse,
     ...horse,
+    images: horse.images?.length
+      ? horse.images
+      : horse.image
+        ? [horse.image]
+        : [],
     status: horse.status || "available",
     isVisible: typeof horse.isVisible === "boolean" ? horse.isVisible : true,
     price: horse.price || "",
@@ -77,42 +80,7 @@ export function HorseEditPanel({
   onCancel,
 }: HorseEditPanelProps) {
   const [formData, setFormData] = useState<Horse>(() => normalizeHorse(horse));
-  const [isUploading, setIsUploading] = useState(false);
-  const [uploadError, setUploadError] = useState("");
-
-  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-
-    if (!file) return;
-
-    try {
-      setIsUploading(true);
-      setUploadError("");
-
-      const formData = new FormData();
-      formData.append("file", file);
-
-      const res = await fetch("/api/admin/upload", {
-        method: "POST",
-        body: formData,
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.message || "Failed to upload image");
-      }
-
-      updateField("image", data.url);
-    } catch (error) {
-      console.error(error);
-      setUploadError(
-        error instanceof Error ? error.message : "Could not upload image.",
-      );
-    } finally {
-      setIsUploading(false);
-    }
-  };
+  const [imagesError, setImagesError] = useState("");
 
   useEffect(() => {
     setFormData(normalizeHorse(horse));
@@ -121,11 +89,17 @@ export function HorseEditPanel({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (formData.images.length === 0) {
+      setImagesError("At least one image is required.");
+      return;
+    }
+
     const sireName = formData.pedigree.sire.name.trim();
     const damName = formData.pedigree.dam.name.trim();
 
     const updatedHorse: Horse = {
       ...formData,
+      image: formData.images[0],
       sire: sireName,
       dam: damName,
       pedigree: {
@@ -270,46 +244,21 @@ export function HorseEditPanel({
           </div>
 
           <div className="mb-5">
-            <label className="edit-panel-label">Upload Image *</label>
+            <label className="edit-panel-label">Upload Images *</label>
 
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleImageUpload}
-              disabled={isUploading}
-              className="edit-panel-input"
+            <ImageManager
+              images={formData.images}
+              onChange={(images) => {
+                updateField("images", images);
+                setImagesError("");
+              }}
+              uploadFolder="sweden-arabian-stud/horses"
             />
 
-            {isUploading && (
-              <p className="mt-2 font-['Raleway',sans-serif] text-[0.7rem] text-[var(--text-muted)]">
-                Uploading image...
-              </p>
-            )}
-
-            {uploadError && (
+            {imagesError && (
               <p className="mt-2 font-['Raleway',sans-serif] text-[0.7rem] text-red-600">
-                {uploadError}
+                {imagesError}
               </p>
-            )}
-
-            <div className="mt-4">
-              <label className="edit-panel-label">Image URL</label>
-              <input
-                type="url"
-                value={formData.image}
-                onChange={(e) => updateField("image", e.target.value)}
-                required
-                className="edit-panel-input"
-                placeholder="Upload an image or paste an image URL"
-              />
-            </div>
-
-            {formData.image && (
-              <img
-                src={formData.image}
-                alt="Preview"
-                className="mt-3 max-h-[200px] w-full rounded object-cover"
-              />
             )}
           </div>
 
@@ -537,7 +486,7 @@ export function HorseEditPanel({
           <button
             type="button"
             onClick={onCancel}
-            disabled={isSaving || isUploading}
+            disabled={isSaving}
             className="cursor-pointer rounded border border-[#d0d0d0] bg-white px-7 py-3 font-['Raleway'] text-[0.7rem] tracking-[0.1em] text-[var(--text-secondary)] uppercase transition hover:bg-[#f5f5f5] disabled:cursor-not-allowed disabled:opacity-60"
           >
             Cancel
@@ -545,17 +494,15 @@ export function HorseEditPanel({
 
           <button
             type="submit"
-            disabled={isSaving || isUploading}
+            disabled={isSaving}
             className="flex cursor-pointer items-center gap-2 rounded border-0 bg-[var(--teal)] px-7 py-3 font-['Raleway'] text-[0.7rem] tracking-[0.1em] text-white uppercase transition hover:bg-[var(--teal-dark)] disabled:cursor-not-allowed disabled:opacity-60"
           >
             <Save size={16} />
-            {isUploading
-              ? "Uploading..."
-              : isSaving
-                ? "Saving..."
-                : isCreating
-                  ? "Create Horse"
-                  : "Save Changes"}
+            {isSaving
+              ? "Saving..."
+              : isCreating
+                ? "Create Horse"
+                : "Save Changes"}
           </button>
         </div>
       </form>

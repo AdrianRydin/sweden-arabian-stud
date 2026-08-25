@@ -56,7 +56,7 @@ export async function POST(req: NextRequest) {
       birthYear,
       breed,
       description,
-      image,
+      images,
       owner,
       breeder,
       sire,
@@ -73,7 +73,8 @@ export async function POST(req: NextRequest) {
       !birthYear ||
       !breed ||
       !description ||
-      !image ||
+      !Array.isArray(images) ||
+      images.length === 0 ||
       !owner ||
       !breeder ||
       !sire ||
@@ -107,7 +108,8 @@ export async function POST(req: NextRequest) {
       birthYear,
       breed,
       description,
-      image,
+      image: images[0],
+      images,
       owner,
       breeder,
       sire,

@@ -10,6 +10,7 @@ type LeanHorse = {
   name?: string;
   birthYear?: number;
   image?: string;
+  images?: string[];
   sire?: string;
   dam?: string;
   slug?: string;
@@ -44,7 +45,7 @@ async function getHorsesBySection(section: HorseSection) {
     _id: String(horse._id),
     name: horse.name || "",
     birthYear: horse.birthYear,
-    image: horse.image || "",
+    image: horse.images?.[0] || horse.image || "",
     sire: horse.sire || "",
     dam: horse.dam || "",
     slug: horse.slug || "",

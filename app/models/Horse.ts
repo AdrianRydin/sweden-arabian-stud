@@ -24,6 +24,10 @@ const HorseSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    images: {
+      type: [String],
+      default: [],
+    },
     owner: {
       type: String,
       required: true,
