@@ -10,6 +10,7 @@ export default function Home() {
           src={"/swedenarabian1.jpg"}
           alt="Hero image"
           fill
+          sizes="(max-width: 768px) 180vw, 100vw"
           className="object-cover block"
           style={{ objectPosition: "center 20%" }}
         />
@@ -52,31 +53,32 @@ export default function Home() {
           Pure Arabian bloodlines. Refined by the North.
         </h2>
         <div className="max-w-155 mx-auto intro-text">
-          <p>
+          <p className="pb-1">
             From the quiet landscapes of Scandinavia we breed Arabian horses,
+            with passion, dedication and a vision for excellence.
           </p>
-          <p>with passion, dedication and a vision for excellence.</p>
-          <p>Sweden Arabian Stud is a boutique breeding program</p>
-          <p>focused on quality, strong bloodlines and exceptional</p>
-          <p>Arabian horses with international potential.</p>
-          <p>With a careful selected group of few mares,</p>
-          <p>we strive to create horses that inspire in the show ring,</p>
-          <p>in breeding and for generations to come.</p>
+          <p className="pb-1">
+            Sweden Arabian Stud is a boutique breeding program focused on
+            quality, strong bloodlines and exceptional Arabian horses with
+            international potential.
+          </p>
+          <p className="pb-1">
+            With a careful selected group of few mares, we strive to create
+            horses that inspire in the show ring, in breeding and for
+            generations to come.
+          </p>
         </div>
       </div>
 
       <div className="relative w-full overflow-hidden family-section-height">
         <img
-          src={"/gucci-linda.jpg"}
+          src={"/palmah-glenn.jpg"}
           alt="Swedish Arabian Horse"
           className="w-full h-full object-cover block"
           style={{ objectPosition: "center 50%" }}
         />
         <div className="absolute inset-0 family-gradient" />
         <div className="absolute top-1/2 -translate-y-1/2 max-w-95 family-content-left">
-          <div className="uppercase mb-2.5 section-label-teal-light">
-            Our Family
-          </div>
           <div className="family-title mb-3">From the North to the World</div>
         </div>
       </div>
@@ -84,19 +86,11 @@ export default function Home() {
       <div className="bg-[#f8f8f6] about-section">
         <div className="max-w-215 mx-auto text-center about-text">
           <p>
-            Sweden Arabian Stud was founded with one vision: to breed and raise
-            exceptional Arabian horses that combine breathtaking beauty with
-            noble character. Located in the Swedish countryside, our stud has
-            become a home where the finest bloodlines are nurtured and new
-            champions are born.
+            From Scandinavia to the world, our horses carry a vision of beauty,
+            quality and exceptional Arabian type.
           </p>
           <br />
-          <p>
-            Every horse at Sweden Arabian Stud is treated as family — raised
-            with care, trained with patience, and presented to the world with
-            pride. From our championship males to our elegant females, every
-            horse represents our commitment to excellence in the Arabian breed.
-          </p>
+          <p>This is our journey. This is our passion.</p>
         </div>
       </div>
 
@@ -104,7 +98,7 @@ export default function Home() {
         <Link href={"/stud"}>
           <div className="relative overflow-hidden min-h-80 group">
             <img
-              src={"/palmah-glenn.jpg"}
+              src={"/gucci-linda.jpg"}
               alt="Sweden Arabian Stud Image"
               className="absolute inset-0 w-full h-full object-cover block transition-transform duration-500 group-hover:scale-105"
             />
@@ -231,7 +225,7 @@ export default function Home() {
         }
         .about-text {
           font-family: 'Raleway', sans-serif;
-          font-size: 0.75rem;
+          font-size: 0.8rem;
           color: #666;
           line-height: 2.1;
         }

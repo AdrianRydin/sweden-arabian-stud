@@ -33,7 +33,7 @@ function Header() {
   }, []);
 
   return (
-    <nav className="sticky top-0 z-100 bg-[#CBBD93] shadow-[0_2px_20px_rgba(0,0,0,0.3)]">
+    <nav className="sticky top-0 z-100 bg-[#cabc9262] shadow-[0_2px_20px_rgba(0,0,0,0.3)]">
       <div className="max-w-350 mx-auto flex items-center justify-between px-8 h-22.5">
         <Link href={"/"}>
           <Image
@@ -89,7 +89,7 @@ function Header() {
           {/* Hamburger button */}
           <button
             onClick={() => setMobileMenuOpen((v) => !v)}
-            className="show-mobile bg-transparent border-none text-[rgba(255,255,255,0.85)] cursor-pointer p-1.5 hidden items-center justify-center rounded"
+            className="show-mobile bg-transparent border-none text-[rgba(0,0,0,0.85)] cursor-pointer p-1.5 hidden items-center justify-center rounded"
             aria-label="Toggle Menu"
           >
             {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
@@ -176,7 +176,7 @@ function Header() {
 
         /* Mobile Menu */
         .mobile-menu-container {
-          background: rgba(30,30,30,0.99);
+          background: #cabc9262;
           border-top: 1px solid rgba(255,255,255,0.08);
           padding: 12px 0 20px;
         }
@@ -186,7 +186,7 @@ function Header() {
           font-family: 'Raleway', sans-serif;
           font-size: 0.78rem;
           letter-spacing: 0.12em;
-          color: rgba(255,255,255,0.7);
+          color: rgba(0,0,0,0.7);
           font-weight: 400;
           padding: 12px 32px;
           border-left: 2px solid transparent;
@@ -204,7 +204,7 @@ function Header() {
           text-decoration: none;
           font-family: 'Raleway', sans-serif;
           font-size: 0.68rem;
-          color: rgba(255,255,255,0.5);
+          color: rgba(0,0,0,0.5);
           letter-spacing: 0.08em;
           transition: color 0.2s;
         }
