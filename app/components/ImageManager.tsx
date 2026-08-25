@@ -12,6 +12,54 @@ interface ImageManagerProps {
   disabled?: boolean;
 }
 
+const MAX_DIMENSION = 2200;
+const JPEG_QUALITY = 0.85;
+
+// Phone photos (especially iPhone camera-roll originals) can be tens of MB,
+// which some hosts reject before our route ever runs, returning a non-JSON
+// error page. Downscaling client-side keeps uploads comfortably small.
+async function downscaleImage(file: File): Promise<File> {
+  if (file.type === "image/svg+xml") {
+    return file;
+  }
+
+  try {
+    const bitmap = await createImageBitmap(file);
+
+    const scale = Math.min(
+      1,
+      MAX_DIMENSION / Math.max(bitmap.width, bitmap.height),
+    );
+    const width = Math.round(bitmap.width * scale);
+    const height = Math.round(bitmap.height * scale);
+
+    const canvas = document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return file;
+
+    ctx.drawImage(bitmap, 0, 0, width, height);
+    bitmap.close();
+
+    const blob: Blob | null = await new Promise((resolve) =>
+      canvas.toBlob(resolve, "image/jpeg", JPEG_QUALITY),
+    );
+
+    if (!blob || blob.size >= file.size) {
+      return file;
+    }
+
+    const newName = file.name.replace(/\.\w+$/, "") + ".jpg";
+    return new File([blob], newName, { type: "image/jpeg" });
+  } catch {
+    // Unsupported format/browser (e.g. an unusual HEIC variant) - fall back
+    // to the original file rather than blocking the upload.
+    return file;
+  }
+}
+
 export function ImageManager({
   images,
   onChange,
@@ -33,8 +81,10 @@ export function ImageManager({
       const uploadedUrls: string[] = [];
 
       for (const file of Array.from(files)) {
+        const uploadFile = await downscaleImage(file);
+
         const body = new FormData();
-        body.append("file", file);
+        body.append("file", uploadFile);
         body.append("folder", uploadFolder);
 
         const res = await fetch("/api/admin/upload", {
@@ -42,13 +92,20 @@ export function ImageManager({
           body,
         });
 
-        const data = await res.json();
+        let data: { url?: string; message?: string };
+        try {
+          data = await res.json();
+        } catch {
+          throw new Error(
+            `Upload failed (${res.status}). The photo may be too large, or the connection was interrupted - try again with a smaller image.`,
+          );
+        }
 
         if (!res.ok) {
           throw new Error(data.message || "Failed to upload image");
         }
 
-        uploadedUrls.push(data.url);
+        uploadedUrls.push(data.url!);
       }
 
       onChange([...images, ...uploadedUrls]);
