@@ -77,9 +77,9 @@ export default function Home() {
           className="w-full h-full object-cover block"
           style={{ objectPosition: "center 50%" }}
         />
-        <div className="absolute inset-0 family-gradient" />
-        <div className="absolute top-1/2 -translate-y-1/2 max-w-95 family-content-left">
-          <div className="family-title mb-3">From the North to the World</div>
+        <div className="absolute inset-0" />
+        <div className="absolute top-1/2 -translate-y-1/2 max-w-120 family-content-left">
+          <div className="family-title mt-50">From the North to the World</div>
         </div>
       </div>
 
