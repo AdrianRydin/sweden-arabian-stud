@@ -53,7 +53,11 @@ async function getHorseBySlug(section: HorseSection, slug: string) {
     birthYear: horse.birthYear,
     breed: horse.breed || "",
     description: horse.description || "",
-    images: horse.images?.length ? horse.images : horse.image ? [horse.image] : [],
+    images: horse.images?.length
+      ? horse.images
+      : horse.image
+        ? [horse.image]
+        : [],
     owner: horse.owner || "",
     breeder: horse.breeder || "",
     sire: horse.sire || "",
@@ -168,15 +172,6 @@ export async function HorseDetailPage({ section, slug }: HorseDetailPageProps) {
                   </div>
                 </div>
               )}
-            </div>
-
-            <div className="mt-8">
-              <Link
-                href="/contact"
-                className="inline-block bg-(--teal) px-6 py-3 font-['Raleway',sans-serif] text-[0.7rem] tracking-[0.14em] text-white uppercase no-underline transition hover:bg-(--teal-dark)"
-              >
-                Contact us
-              </Link>
             </div>
           </div>
         </div>
