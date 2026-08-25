@@ -12,11 +12,19 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-function uploadToCloudinary(buffer: Buffer): Promise<UploadApiResponse> {
+const ALLOWED_FOLDERS = [
+  "sweden-arabian-stud/horses",
+  "sweden-arabian-stud/moments",
+];
+
+function uploadToCloudinary(
+  buffer: Buffer,
+  folder: string,
+): Promise<UploadApiResponse> {
   return new Promise((resolve, reject) => {
     const uploadStream = cloudinary.uploader.upload_stream(
       {
-        folder: "sweden-arabian-stud/horses",
+        folder,
         resource_type: "image",
       },
       (error, result) => {
@@ -51,6 +59,13 @@ export async function POST(req: NextRequest) {
 
     const formData = await req.formData();
     const file = formData.get("file");
+    const requestedFolder = formData.get("folder");
+
+    const folder =
+      typeof requestedFolder === "string" &&
+      ALLOWED_FOLDERS.includes(requestedFolder)
+        ? requestedFolder
+        : "sweden-arabian-stud/horses";
 
     if (!(file instanceof File)) {
       return NextResponse.json(
@@ -76,7 +91,7 @@ export async function POST(req: NextRequest) {
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
 
-    const result = await uploadToCloudinary(buffer);
+    const result = await uploadToCloudinary(buffer, folder);
 
     return NextResponse.json(
       {
