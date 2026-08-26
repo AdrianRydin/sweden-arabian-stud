@@ -33,7 +33,7 @@ function Header() {
   }, []);
 
   return (
-    <nav className="sticky top-0 z-100 bg-[#cabc9262] shadow-[0_2px_20px_rgba(0,0,0,0.3)]">
+    <nav className="sticky top-0 z-100 bg-[#ebe5d5] shadow-[0_2px_20px_rgba(0,0,0,0.3)]">
       <div className="max-w-350 mx-auto flex items-center justify-between px-8 h-22.5">
         <Link href={"/"}>
           <Image
@@ -176,8 +176,8 @@ function Header() {
 
         /* Mobile Menu */
         .mobile-menu-container {
-          background: #cabc9262;
-          border-top: 1px solid rgba(255,255,255,0.08);
+          background: #ebe5d5;
+          border-top: 1px solid rgba(0,0,0,0.08);
           padding: 12px 0 20px;
         }
         .mobile-nav-link {

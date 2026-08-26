@@ -152,8 +152,7 @@ export async function HorseDetailPage({ section, slug }: HorseDetailPageProps) {
             <p className="font-['Raleway',sans-serif] text-[0.82rem] leading-7 text-(--text-secondary)">
               {horse.description}
             </p>
-
-            <div className="mt-8 grid grid-cols-1 gap-5 border-t border-[#e8e8e4] pt-6 sm:grid-cols-2">
+            <div className="mt-8 grid grid-cols-1 gap-5 border-t border-[#e8e8e4] pt-6 sm:grid-cols-2 ">
               {horse.owner && (
                 <div>
                   <div className="mb-1 font-['Raleway',sans-serif] text-[0.62rem] tracking-[0.12em] text-(--text-muted) uppercase">
@@ -178,7 +177,10 @@ export async function HorseDetailPage({ section, slug }: HorseDetailPageProps) {
             </div>
 
             <div className="mt-8">
-              <PedigreeButton horseName={horse.name} pedigree={horse.pedigree} />
+              <PedigreeButton
+                horseName={horse.name}
+                pedigree={horse.pedigree}
+              />
             </div>
           </div>
         </div>

@@ -13,7 +13,7 @@ const navLinks = [
 
 function Footer() {
   return (
-    <footer className="bg-[#cabc9262] pt-14 pb-6">
+    <footer className="bg-[#ebe5d5] pt-14 pb-6">
       <div className="max-w-350 mx-auto px-10">
         <div className="footer-grid">
           {/* Brand */}

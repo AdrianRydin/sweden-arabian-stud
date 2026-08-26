@@ -42,6 +42,29 @@ function ColumnHeader({ label }: { label: string }) {
   );
 }
 
+function MobileGroupHeader({ label }: { label: string }) {
+  return (
+    <div className="mb-2 font-['Raleway',sans-serif] text-[0.6rem] tracking-[0.16em] text-(--sage-dark) uppercase">
+      {label}
+    </div>
+  );
+}
+
+function MobileRow({ entry }: { entry?: PedigreeHorse | null }) {
+  return (
+    <div className="flex items-center justify-between gap-3 bg-white px-4 py-3">
+      <div className="font-['Cormorant_Garamond',serif] text-base text-[#333]">
+        {entry?.name || "Unknown"}
+      </div>
+      {entry?.info && (
+        <div className="font-['Raleway',sans-serif] text-[0.56rem] tracking-[0.08em] text-(--text-muted) uppercase">
+          {entry.info}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export function PedigreeButton({ horseName, pedigree }: PedigreeButtonProps) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -101,41 +124,61 @@ export function PedigreeButton({ horseName, pedigree }: PedigreeButtonProps) {
               </button>
             </div>
 
-            <div className="overflow-x-auto">
-              <div className="min-w-[520px]">
-                <div className="grid grid-cols-3 gap-x-[2px]">
-                  <div />
-                  <ColumnHeader label="Parents" />
-                  <ColumnHeader label="Grandparents" />
+            {/* Stacked list - phones */}
+            <div className="space-y-5 md:hidden">
+              <div>
+                <MobileGroupHeader label="Parents" />
+                <div className="divide-y divide-[#e8e8e4] border border-[#e8e8e4]">
+                  <MobileRow entry={pedigree?.sire} />
+                  <MobileRow entry={pedigree?.dam} />
+                </div>
+              </div>
+
+              <div>
+                <MobileGroupHeader label="Grandparents" />
+                <div className="divide-y divide-[#e8e8e4] border border-[#e8e8e4]">
+                  <MobileRow entry={pedigree?.sireSire} />
+                  <MobileRow entry={pedigree?.sireDam} />
+                  <MobileRow entry={pedigree?.damSire} />
+                  <MobileRow entry={pedigree?.damDam} />
+                </div>
+              </div>
+            </div>
+
+            {/* Tree chart - tablet and up */}
+            <div className="hidden md:block">
+              <div className="grid grid-cols-3 gap-x-[2px]">
+                <div />
+                <ColumnHeader label="Parents" />
+                <ColumnHeader label="Grandparents" />
+              </div>
+
+              <div
+                className="grid grid-cols-3 gap-[2px] bg-[#e8e8e4]"
+                style={{ gridTemplateRows: "repeat(4, minmax(56px, auto))" }}
+              >
+                <div style={{ gridColumn: 1, gridRow: "1 / span 4" }}>
+                  <PedigreeCell entry={{ name: horseName }} emphasis />
                 </div>
 
-                <div
-                  className="grid grid-cols-3 gap-[2px] bg-[#e8e8e4]"
-                  style={{ gridTemplateRows: "repeat(4, minmax(56px, auto))" }}
-                >
-                  <div style={{ gridColumn: 1, gridRow: "1 / span 4" }}>
-                    <PedigreeCell entry={{ name: horseName }} emphasis />
-                  </div>
+                <div style={{ gridColumn: 2, gridRow: "1 / span 2" }}>
+                  <PedigreeCell entry={pedigree?.sire} />
+                </div>
+                <div style={{ gridColumn: 2, gridRow: "3 / span 2" }}>
+                  <PedigreeCell entry={pedigree?.dam} />
+                </div>
 
-                  <div style={{ gridColumn: 2, gridRow: "1 / span 2" }}>
-                    <PedigreeCell entry={pedigree?.sire} />
-                  </div>
-                  <div style={{ gridColumn: 2, gridRow: "3 / span 2" }}>
-                    <PedigreeCell entry={pedigree?.dam} />
-                  </div>
-
-                  <div style={{ gridColumn: 3, gridRow: "1 / span 1" }}>
-                    <PedigreeCell entry={pedigree?.sireSire} />
-                  </div>
-                  <div style={{ gridColumn: 3, gridRow: "2 / span 1" }}>
-                    <PedigreeCell entry={pedigree?.sireDam} />
-                  </div>
-                  <div style={{ gridColumn: 3, gridRow: "3 / span 1" }}>
-                    <PedigreeCell entry={pedigree?.damSire} />
-                  </div>
-                  <div style={{ gridColumn: 3, gridRow: "4 / span 1" }}>
-                    <PedigreeCell entry={pedigree?.damDam} />
-                  </div>
+                <div style={{ gridColumn: 3, gridRow: "1 / span 1" }}>
+                  <PedigreeCell entry={pedigree?.sireSire} />
+                </div>
+                <div style={{ gridColumn: 3, gridRow: "2 / span 1" }}>
+                  <PedigreeCell entry={pedigree?.sireDam} />
+                </div>
+                <div style={{ gridColumn: 3, gridRow: "3 / span 1" }}>
+                  <PedigreeCell entry={pedigree?.damSire} />
+                </div>
+                <div style={{ gridColumn: 3, gridRow: "4 / span 1" }}>
+                  <PedigreeCell entry={pedigree?.damDam} />
                 </div>
               </div>
             </div>
