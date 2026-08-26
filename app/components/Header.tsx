@@ -171,7 +171,7 @@ function Header() {
           transition: background 0.2s;
         }
         .social-icon-desktop:hover {
-          background: rgba(255,255,255,0.2);
+          background: rgba(0,0,0,0.22);
         }
 
         /* Mobile Menu */
@@ -209,7 +209,7 @@ function Header() {
           transition: color 0.2s;
         }
         .mobile-social-link:hover {
-          color: rgba(255,255,255,0.7);
+          color: #5b9aaf;
         }
 
 

@@ -12,10 +12,29 @@ interface PedigreeButtonProps {
 function PedigreeCell({
   entry,
   emphasis = false,
+  layout = "tree",
 }: {
   entry?: PedigreeHorse | null;
   emphasis?: boolean;
+  layout?: "tree" | "row";
 }) {
+  const name = entry?.name || "Unknown";
+
+  if (layout === "row") {
+    return (
+      <div className="flex items-center justify-between gap-3 bg-white px-4 py-3">
+        <div className="font-['Cormorant_Garamond',serif] text-base text-[#333]">
+          {name}
+        </div>
+        {entry?.info && (
+          <div className="font-['Raleway',sans-serif] text-[0.56rem] tracking-[0.08em] text-(--text-muted) uppercase">
+            {entry.info}
+          </div>
+        )}
+      </div>
+    );
+  }
+
   return (
     <div
       className={`flex h-full min-h-14 flex-col items-center justify-center px-3 py-2 text-center ${
@@ -23,7 +42,7 @@ function PedigreeCell({
       }`}
     >
       <div className="font-['Cormorant_Garamond',serif] text-[0.9rem] leading-snug text-[#333] md:text-base">
-        {entry?.name || "Unknown"}
+        {name}
       </div>
       {entry?.info && (
         <div className="mt-0.5 font-['Raleway',sans-serif] text-[0.56rem] tracking-[0.08em] text-(--text-muted) uppercase">
@@ -46,21 +65,6 @@ function MobileGroupHeader({ label }: { label: string }) {
   return (
     <div className="mb-2 font-['Raleway',sans-serif] text-[0.6rem] tracking-[0.16em] text-(--sage-dark) uppercase">
       {label}
-    </div>
-  );
-}
-
-function MobileRow({ entry }: { entry?: PedigreeHorse | null }) {
-  return (
-    <div className="flex items-center justify-between gap-3 bg-white px-4 py-3">
-      <div className="font-['Cormorant_Garamond',serif] text-base text-[#333]">
-        {entry?.name || "Unknown"}
-      </div>
-      {entry?.info && (
-        <div className="font-['Raleway',sans-serif] text-[0.56rem] tracking-[0.08em] text-(--text-muted) uppercase">
-          {entry.info}
-        </div>
-      )}
     </div>
   );
 }
@@ -129,18 +133,18 @@ export function PedigreeButton({ horseName, pedigree }: PedigreeButtonProps) {
               <div>
                 <MobileGroupHeader label="Parents" />
                 <div className="divide-y divide-[#e8e8e4] border border-[#e8e8e4]">
-                  <MobileRow entry={pedigree?.sire} />
-                  <MobileRow entry={pedigree?.dam} />
+                  <PedigreeCell entry={pedigree?.sire} layout="row" />
+                  <PedigreeCell entry={pedigree?.dam} layout="row" />
                 </div>
               </div>
 
               <div>
                 <MobileGroupHeader label="Grandparents" />
                 <div className="divide-y divide-[#e8e8e4] border border-[#e8e8e4]">
-                  <MobileRow entry={pedigree?.sireSire} />
-                  <MobileRow entry={pedigree?.sireDam} />
-                  <MobileRow entry={pedigree?.damSire} />
-                  <MobileRow entry={pedigree?.damDam} />
+                  <PedigreeCell entry={pedigree?.sireSire} layout="row" />
+                  <PedigreeCell entry={pedigree?.sireDam} layout="row" />
+                  <PedigreeCell entry={pedigree?.damSire} layout="row" />
+                  <PedigreeCell entry={pedigree?.damDam} layout="row" />
                 </div>
               </div>
             </div>

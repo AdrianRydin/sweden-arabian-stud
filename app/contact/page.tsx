@@ -6,6 +6,8 @@ import { MapPin, Phone, Mail } from "lucide-react";
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", comment: "" });
   const [sent, setSent] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -13,9 +15,42 @@ export default function Contact() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSent(true);
+
+    try {
+      setIsSending(true);
+      setErrorMessage("");
+
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      let data: { message?: string };
+      try {
+        data = await res.json();
+      } catch {
+        throw new Error(
+          "Something went wrong sending your message. Please try again.",
+        );
+      }
+
+      if (!res.ok) {
+        throw new Error(data.message || "Failed to send message");
+      }
+
+      setSent(true);
+    } catch (error) {
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : "Could not send your message. Please try again.",
+      );
+    } finally {
+      setIsSending(false);
+    }
   };
   return (
     <div>
@@ -122,13 +157,20 @@ export default function Contact() {
                   />
                 </div>
 
+                {errorMessage && (
+                  <div className="mb-3.5 text-[0.7rem] text-red-600">
+                    {errorMessage}
+                  </div>
+                )}
+
                 {/* Submit */}
                 <div>
                   <button
                     type="submit"
-                    className="bg-[#3d7a8a] border-0 text-white font-['Raleway',sans-serif] text-[0.68rem] tracking-[0.14em] uppercase px-7 py-2.5 cursor-pointer transition-[background] duration-200 hover:bg-[#2e6070]"
+                    disabled={isSending}
+                    className="bg-[#3d7a8a] border-0 text-white font-['Raleway',sans-serif] text-[0.68rem] tracking-[0.14em] uppercase px-7 py-2.5 cursor-pointer transition-[background] duration-200 hover:bg-[#2e6070] disabled:cursor-not-allowed disabled:opacity-60"
                   >
-                    Submit
+                    {isSending ? "Sending..." : "Submit"}
                   </button>
                 </div>
               </form>
