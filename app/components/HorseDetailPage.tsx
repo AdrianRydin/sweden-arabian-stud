@@ -3,12 +3,14 @@ import { notFound } from "next/navigation";
 import { dbConnect } from "../lib/mongodb";
 import { Horse as HorseModel } from "../models/Horse";
 import {
+  HorsePedigree,
   HorseSection,
   horseSectionBackLinks,
   horseSectionLabels,
   horseSectionPluralLabels,
 } from "../data/horseData";
 import { ImageGallery } from "./ImageGallery";
+import { PedigreeButton } from "./PedigreeButton";
 
 type LeanHorse = {
   _id: unknown;
@@ -66,6 +68,7 @@ async function getHorseBySlug(section: HorseSection, slug: string) {
     section: horse.section,
     status: horse.status || "available",
     price: horse.price || "",
+    pedigree: horse.pedigree as HorsePedigree | undefined,
   };
 }
 
@@ -172,6 +175,10 @@ export async function HorseDetailPage({ section, slug }: HorseDetailPageProps) {
                   </div>
                 </div>
               )}
+            </div>
+
+            <div className="mt-8">
+              <PedigreeButton horseName={horse.name} pedigree={horse.pedigree} />
             </div>
           </div>
         </div>
