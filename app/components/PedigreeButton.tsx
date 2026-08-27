@@ -12,29 +12,10 @@ interface PedigreeButtonProps {
 function PedigreeCell({
   entry,
   emphasis = false,
-  layout = "tree",
 }: {
   entry?: PedigreeHorse | null;
   emphasis?: boolean;
-  layout?: "tree" | "row";
 }) {
-  const name = entry?.name || "Unknown";
-
-  if (layout === "row") {
-    return (
-      <div className="flex items-center justify-between gap-3 bg-white px-4 py-3">
-        <div className="font-['Cormorant_Garamond',serif] text-base text-[#333]">
-          {name}
-        </div>
-        {entry?.info && (
-          <div className="font-['Raleway',sans-serif] text-[0.56rem] tracking-[0.08em] text-(--text-muted) uppercase">
-            {entry.info}
-          </div>
-        )}
-      </div>
-    );
-  }
-
   return (
     <div
       className={`flex h-full min-h-14 flex-col items-center justify-center px-3 py-2 text-center ${
@@ -42,7 +23,7 @@ function PedigreeCell({
       }`}
     >
       <div className="font-['Cormorant_Garamond',serif] text-[0.9rem] leading-snug text-[#333] md:text-base">
-        {name}
+        {entry?.name || "Unknown"}
       </div>
       {entry?.info && (
         <div className="mt-0.5 font-['Raleway',sans-serif] text-[0.56rem] tracking-[0.08em] text-(--text-muted) uppercase">
@@ -56,14 +37,6 @@ function PedigreeCell({
 function ColumnHeader({ label }: { label: string }) {
   return (
     <div className="pb-2 text-center font-['Raleway',sans-serif] text-[0.6rem] tracking-[0.16em] text-(--sage-dark) uppercase">
-      {label}
-    </div>
-  );
-}
-
-function MobileGroupHeader({ label }: { label: string }) {
-  return (
-    <div className="mb-2 font-['Raleway',sans-serif] text-[0.6rem] tracking-[0.16em] text-(--sage-dark) uppercase">
       {label}
     </div>
   );
@@ -128,23 +101,34 @@ export function PedigreeButton({ horseName, pedigree }: PedigreeButtonProps) {
               </button>
             </div>
 
-            {/* Stacked list - phones */}
-            <div className="space-y-5 md:hidden">
-              <div>
-                <MobileGroupHeader label="Parents" />
-                <div className="divide-y divide-[#e8e8e4] border border-[#e8e8e4]">
-                  <PedigreeCell entry={pedigree?.sire} layout="row" />
-                  <PedigreeCell entry={pedigree?.dam} layout="row" />
+            {/* Tree chart, stacked top-to-bottom - phones */}
+            <div className="md:hidden">
+              <div
+                className="grid grid-cols-4 gap-[2px] bg-[#e8e8e4]"
+                style={{ gridTemplateRows: "repeat(3, minmax(56px, auto))" }}
+              >
+                <div style={{ gridColumn: "1 / span 4", gridRow: 1 }}>
+                  <PedigreeCell entry={{ name: horseName }} emphasis />
                 </div>
-              </div>
 
-              <div>
-                <MobileGroupHeader label="Grandparents" />
-                <div className="divide-y divide-[#e8e8e4] border border-[#e8e8e4]">
-                  <PedigreeCell entry={pedigree?.sireSire} layout="row" />
-                  <PedigreeCell entry={pedigree?.sireDam} layout="row" />
-                  <PedigreeCell entry={pedigree?.damSire} layout="row" />
-                  <PedigreeCell entry={pedigree?.damDam} layout="row" />
+                <div style={{ gridColumn: "1 / span 2", gridRow: 2 }}>
+                  <PedigreeCell entry={pedigree?.sire} />
+                </div>
+                <div style={{ gridColumn: "3 / span 2", gridRow: 2 }}>
+                  <PedigreeCell entry={pedigree?.dam} />
+                </div>
+
+                <div style={{ gridColumn: 1, gridRow: 3 }}>
+                  <PedigreeCell entry={pedigree?.sireSire} />
+                </div>
+                <div style={{ gridColumn: 2, gridRow: 3 }}>
+                  <PedigreeCell entry={pedigree?.sireDam} />
+                </div>
+                <div style={{ gridColumn: 3, gridRow: 3 }}>
+                  <PedigreeCell entry={pedigree?.damSire} />
+                </div>
+                <div style={{ gridColumn: 4, gridRow: 3 }}>
+                  <PedigreeCell entry={pedigree?.damDam} />
                 </div>
               </div>
             </div>
