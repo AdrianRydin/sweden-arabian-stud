@@ -73,7 +73,7 @@ function StudPage() {
             eyebrow="Our Story"
             heading="A Lifelong Passion for Arabian Horses"
             paragraphs={[
-              "Sweden Arabian Stud is a boutique Arabian horse breeding farm in Uddevalla, Sweden, owned by Kathleen and Joakim Ohlsson. Internationally recognized for breeding high quality Arabian horses, the stud has built a strong reputation for producing horses of outstanding type, quality, and world-class bloodlines.",
+              "Sweden Arabian Stud is a boutique Arabian horse breeding farm in Uddevalla, Sweden, owned by Kathleen, Joakim Ohlsson and their daughter Ofelia. Internationally recognized for breeding high quality Arabian horses, the stud has built a strong reputation for producing horses of outstanding type, quality, and world-class bloodlines.",
               "Kathleen Ohlsson developed a passion for horses at an early age and got her first Arabian horse when she was just thirteen years old. Her love for the breed became the foundation of Sweden Arabian Stud. The stud officially began in 2003 with the purchase of its first stallion and has since evolved into a carefully developed breeding program focused on excellence. Joakim Ohlsson joined the journey later and quickly developed a deep passion for Arabian horses. Kathleen is an ECAHO B Judge.",
             ]}
           />
@@ -86,6 +86,7 @@ function StudPage() {
             paragraphs={[
               "The breeding program is based on a carefully selected group of mares, with influential foundation mares such as the World Champion mare Alma Al Tiglio and the very special Athbayat JJ, whose legacy continues to shape the success of the stud. Sweden Arabian Stud believes in quality over quantity, breeding only a limited number of foals each year, with every mating carefully planned to produce not only successful show horses but also future breeding horses of the highest standard. Every horse bred by Sweden Arabian Stud proudly carries the stud's distinctive “O” suffix after the name.",
               "For ten years, Sweden Arabian Stud was home to the legendary black stallion Magic Magnifique, one of the breed's most admired sires.",
+              "The stud farm was also home for WF Gawin his first breeding season and to Medan Al Shaqab.",
             ]}
             reverse
           />
