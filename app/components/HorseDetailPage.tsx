@@ -36,12 +36,11 @@ interface HorseDetailPageProps {
   slug: string;
 }
 
-function splitIntoSentences(text: string) {
+function splitIntoParagraphs(text: string) {
   return text
-    .split(".")
-    .map((sentence) => sentence.trim())
-    .filter(Boolean)
-    .map((sentence) => `${sentence}.`);
+    .split(/\n\s*\n/)
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean);
 }
 
 async function getHorseBySlug(section: HorseSection, slug: string) {
@@ -157,15 +156,17 @@ export async function HorseDetailPage({ section, slug }: HorseDetailPageProps) {
               </div>
             )}
 
-            <div className="space-y-4">
-              {splitIntoSentences(horse.description).map((sentence, index) => (
-                <p
-                  key={index}
-                  className="font-['Raleway',sans-serif] text-[0.82rem] leading-7 text-(--text-secondary)"
-                >
-                  {sentence}
-                </p>
-              ))}
+            <div className="space-y-3">
+              {splitIntoParagraphs(horse.description).map(
+                (paragraph, index) => (
+                  <p
+                    key={index}
+                    className="whitespace-pre-line font-['Raleway',sans-serif] text-[0.82rem] leading-7 text-(--text-secondary)"
+                  >
+                    {paragraph}
+                  </p>
+                ),
+              )}
             </div>
             <div className="mt-8 grid grid-cols-1 gap-5 border-t border-[#e8e8e4] pt-6 sm:grid-cols-2 ">
               {horse.owner && (

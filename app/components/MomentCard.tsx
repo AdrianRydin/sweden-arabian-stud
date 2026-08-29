@@ -19,7 +19,7 @@ export function MomentCard({ image, title, detailLink }: MomentCardProps) {
         />
       </div>
       <div className="pt-3.5 text-center">
-        <div className="font-['Cormorant_Garamond',serif] text-xl text-[#333] tracking-[0.02em]">
+        <div className="font-['Cormorant_Garamond',serif] text-[1rem] text-[#333] tracking-[0.02em]">
           {title}
         </div>
       </div>
