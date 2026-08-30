@@ -25,10 +25,10 @@ export default function RootLayout({
         <link rel="icon" href="./icon.ico" sizes="32x32" />
       </head>
       <body
-        className={`${raleway.variable}  antialiased min-h-screen bg-white `}
+        className={`${raleway.variable}  antialiased min-h-screen bg-white flex flex-col`}
       >
         <Header />
-        {children}
+        <div className="flex-1">{children}</div>
         <Footer />
       </body>
     </html>

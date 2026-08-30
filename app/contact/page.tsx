@@ -54,9 +54,8 @@ export default function Contact() {
   };
   return (
     <div>
-      <div className="bg-linear-to-br from-[#3d7a8a] via-[#2e6070] to-[#1e4a58] px-[clamp(20px,6vw,72px)] py-[clamp(28px,5vw,48px)] relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_50%,rgba(255,255,255,0.04)_0%,transparent_60%)]" />
-        <h1 className="font-['Cormorant_SC',serif] text-[clamp(1.6rem,4vw,2.6rem)] text-white tracking-[0.25em] m-0 font-normal relative">
+      <div className="bg-[#E2E0D9] px-[clamp(20px,6vw,72px)] py-[clamp(28px,5vw,48px)] relative overflow-hidden">
+        <h1 className="font-['Cormorant_SC',serif] text-[clamp(1.6rem,4vw,2.6rem)] text-[#2a2a2a] tracking-[0.25em] m-0 font-normal relative">
           CONTACT
         </h1>
       </div>
@@ -168,7 +167,7 @@ export default function Contact() {
                   <button
                     type="submit"
                     disabled={isSending}
-                    className="bg-[#3d7a8a] border-0 text-white font-['Raleway',sans-serif] text-[0.68rem] tracking-[0.14em] uppercase px-7 py-2.5 cursor-pointer transition-[background] duration-200 hover:bg-[#2e6070] disabled:cursor-not-allowed disabled:opacity-60"
+                    className="bg-[#E2E0D9] border-0 text-black font-['Raleway',sans-serif] text-[0.68rem] tracking-[0.14em] uppercase px-7 py-2.5 cursor-pointer transition-[background] duration-200 hover:bg-(--teal-dark) disabled:cursor-not-allowed disabled:opacity-60"
                   >
                     {isSending ? "Sending..." : "Submit"}
                   </button>
