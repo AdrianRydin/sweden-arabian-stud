@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { MapPin, Phone, Mail } from "lucide-react";
+import Image from "next/image";
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", comment: "" });
@@ -66,7 +67,14 @@ export default function Contact() {
             <div className="text-[clamp(0.85rem,1.5vw,1rem)] tracking-[0.18em] text-[#333] mb-5 font-semibold">
               REACH OUT TO US
             </div>
+            <Image
+              src={"/AADJI_20260903101907_0004_D.jpg"}
+              alt="Picture of stud and ocean"
+              width={1000}
+              height={300}
+            />
 
+            <div className="border-t border-[#e8e8e8] my-5.5" />
             <div className="contact-details-row">
               <div className="flex items-center gap-2">
                 <MapPin size={14} color="#5b9aaf" className="shrink-0" />
@@ -94,86 +102,6 @@ export default function Contact() {
                 </a>
               </div>
             </div>
-
-            <div className="border-t border-[#e8e8e8] my-5.5" />
-
-            <p className="text-[0.73rem] text-[#888] mb-5 leading-[1.7]">
-              Drop us a line and we will get back to you.
-            </p>
-
-            {sent ? (
-              <div className="p-6 bg-[#f0f8f5] border border-[#b8d8cc] text-center">
-                <div className="font-['Cormorant_Garamond',serif] italic text-[1.1rem] text-[#4a8a7a] mb-1.5">
-                  Thank you for reaching out.
-                </div>
-                <div className="text-[0.7rem] text-[#888]">
-                  We will respond to your enquiry as soon as possible.
-                </div>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-0">
-                {/* Name */}
-                <div className="relative mb-3.5">
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Name"
-                    value={form.name}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-2.5 pr-8 py-2.5 border-0 border-b border-[#ccc] bg-transparent font-['Raleway',sans-serif] text-xs text-[#333] outline-none box-border transition-[border-color] duration-200 focus:border-[#5b9aaf]"
-                  />
-                  <span className="absolute right-2 top-1/2 -translate-y-1/2 text-[#5b9aaf] text-[0.9rem] pointer-events-none">
-                    ✦
-                  </span>
-                </div>
-
-                {/* Email */}
-                <div className="relative mb-3.5">
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    value={form.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-2.5 pr-8 py-2.5 border-0 border-b border-[#ccc] bg-transparent font-['Raleway',sans-serif] text-xs text-[#333] outline-none box-border transition-[border-color] duration-200 focus:border-[#5b9aaf]"
-                  />
-                  <span className="absolute right-2 top-1/2 -translate-y-1/2 text-[#5b9aaf] text-[0.9rem] pointer-events-none">
-                    ✦
-                  </span>
-                </div>
-
-                {/* Comment */}
-                <div className="mb-5.5">
-                  <textarea
-                    name="comment"
-                    placeholder="Comment"
-                    value={form.comment}
-                    onChange={handleChange}
-                    rows={5}
-                    className="w-full p-2.5 border border-[#ccc] bg-transparent font-['Raleway',sans-serif] text-xs text-[#333] outline-none box-border resize-y transition-[border-color] duration-200 focus:border-[#5b9aaf]"
-                  />
-                </div>
-
-                {errorMessage && (
-                  <div className="mb-3.5 text-[0.7rem] text-red-600">
-                    {errorMessage}
-                  </div>
-                )}
-
-                {/* Submit */}
-                <div>
-                  <button
-                    type="submit"
-                    disabled={isSending}
-                    className="bg-[#E2E0D9] border-0 text-black font-['Raleway',sans-serif] text-[0.68rem] tracking-[0.14em] uppercase px-7 py-2.5 cursor-pointer transition-[background] duration-200 hover:bg-(--teal-dark) disabled:cursor-not-allowed disabled:opacity-60"
-                  >
-                    {isSending ? "Sending..." : "Submit"}
-                  </button>
-                </div>
-              </form>
-            )}
           </div>
 
           <div>

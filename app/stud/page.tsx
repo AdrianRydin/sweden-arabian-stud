@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { PageHero } from "../components/PageHero";
 
-const heroImage = "/image0.jpeg";
+const heroImage = "/AADJI_20260903102509_0037_D.jpg";
 
 interface StudSectionProps {
   image: string;
