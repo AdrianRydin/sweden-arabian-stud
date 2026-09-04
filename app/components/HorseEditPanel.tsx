@@ -221,14 +221,14 @@ export function HorseEditPanel({
           </div>
 
           <div className="mb-5">
-            <label className="edit-panel-label">Breed *</label>
+            <label className="edit-panel-label">Colour *</label>
             <input
               type="text"
               value={formData.breed}
               onChange={(e) => updateField("breed", e.target.value)}
               required
               className="edit-panel-input"
-              placeholder="Arabian Horse"
+              placeholder="Grey"
             />
           </div>
 

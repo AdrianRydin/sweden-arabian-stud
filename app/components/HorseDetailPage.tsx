@@ -148,7 +148,7 @@ export async function HorseDetailPage({ section, slug }: HorseDetailPageProps) {
             {horse.breed && (
               <div className="mb-6">
                 <div className="mb-1 font-['Raleway',sans-serif] text-[0.62rem] tracking-[0.12em] text-(--text-muted) uppercase">
-                  Breed
+                  Colour
                 </div>
                 <div className="font-['Cormorant_Garamond',serif] text-xl text-[#333]">
                   {horse.breed}
